@@ -43,7 +43,7 @@ Optional later (needs Aaron's yes): push-to-deploy. Direct Upload projects can't
 
 | When (PT) | Deployment | Source |
 |---|---|---|
-| 2026-10-08 | *(see below)* | `luckysushiai/site` initial commit. Same content as `96a120ff`; first deploy from this repo |
+| 2026-10-08 ~2:27 PM | `581bc88c` | `luckysushiai/site` `a6fe85e`, from a clean clone. Same manifest and `_headers` as `96a120ff`; first deploy from this repo. All assets were already uploaded under the same hashes, so no upload token was needed |
 | 2026-10-08 ~8:27 AM | `96a120ff` | Pre-split repo. Nav "Lab" goes to `#off-leash-lab` |
 | 2026-10-08 ~8:17 AM | `e6588725` | Pre-split repo. Off Leash Lab gets its own section |
 | 2026-10-08 ~8:15 AM | `0e52196a` | Pre-split repo. Rename to The Off Leash Lab |
