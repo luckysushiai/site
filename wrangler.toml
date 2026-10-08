@@ -1,0 +1,8 @@
+# Cloudflare Pages config for luckysushi.ai. Static site, no build step, no Functions, no bindings yet.
+# Once a deployment includes this file, it is the source of truth: the matching dashboard fields become read-only.
+# Nothing in this file creates anything. A project is only created by `wrangler pages project create`
+# or the dashboard, and that's Aaron's call (see DEPLOY.md).
+name = "luckysushi-ai"
+pages_build_output_dir = "./site"
+compatibility_date = "2026-10-07"
+send_metrics = false

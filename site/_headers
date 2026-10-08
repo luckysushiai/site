@@ -1,0 +1,44 @@
+# Cloudflare Pages headers file. Docs: https://developers.cloudflare.com/pages/configuration/headers/
+# Applies to static assets served by Pages (not to Pages Functions responses).
+#
+# CSP notes: 'self' + cloudflareinsights covers Web Analytics auto-injection (beacon script from
+# static.cloudflareinsights.com, posts to same-origin /cdn-cgi/rum) and manual embedding (posts to
+# cloudflareinsights.com). If a third-party sign-up form or embed is added, add its origin to
+# form-action / frame-src / script-src / connect-src, or the browser will block it.
+#
+# HSTS starts at 1 day on purpose: browsers remember it, so raise to 31536000 only after the custom
+# domain is stable. No includeSubDomains / preload yet (preload is effectively irreversible).
+#
+# The pages.dev rule keeps that hostname out of search results; luckysushi.ai is canonical. It assumes
+# the project is named "luckysushi-ai"; update the hostname if a different name is chosen. Preview
+# deployments (*.luckysushi-ai.pages.dev) already get X-Robots-Tag: noindex from Cloudflare.
+#
+# Icons/OG image aren't content-hashed, so they cache for a week (not "immutable"). HTML keeps the
+# Pages default (revalidate every request) so deploys show up immediately.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=86400
+
+https://luckysushi-ai.pages.dev/*
+  X-Robots-Tag: noindex
+
+/assets/*
+  Cache-Control: public, max-age=604800
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/favicon-32.png
+  Cache-Control: public, max-age=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+
+/styles.css
+  Cache-Control: public, max-age=3600

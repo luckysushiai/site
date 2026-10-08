@@ -1,0 +1,90 @@
+/* Palette sampled with PIL from Aaron's logo set (lucky-sushi-logo-set.png).
+   --orange is the logo underline/topknot; it passes AA only behind ink text (6.25:1),
+   so text-on-cream uses --orange-text (#a34c0a, 4.77:1 on cream, 5.84:1 on white). */
+:root{
+  --cream:#efe7de;        /* logo background */
+  --cream-light:#f5eadd;  /* inside the logo circle */
+  --card:#fbf7f1;
+  --ink:#141414;          /* wordmark */
+  --orange:#f07214;       /* underline accent */
+  --orange-text:#a34c0a;  /* orange darkened for AA text */
+  --brindle:#3d342d;      /* Lucky's coat */
+  --tan:#dca168;          /* Sushi's coat */
+  --muted:#5b5249;        /* brindle, lightened: 6.2:1 on cream */
+  --line:#e0d2c1;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman","Liberation Serif","DejaVu Serif",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--cream)}
+body{margin:0;font:17px/1.6 var(--sans);color:var(--ink);background:var(--cream)}
+img{max-width:100%;height:auto}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+a{color:var(--orange-text)}
+a:hover{color:var(--brindle)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:18px;padding-bottom:18px}
+.brand{font-family:var(--serif);font-weight:700;text-decoration:none;color:var(--ink);font-size:22px;letter-spacing:-.01em}
+nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--orange-text)}
+
+/* Logo lockup */
+.lockup{text-align:center;padding-top:8px;padding-bottom:8px}
+.lockup picture,.lockup img{display:block;margin:0 auto}
+.lockup img{width:min(460px,88vw)}
+.wordmark{font-family:var(--serif);font-weight:700;font-size:clamp(46px,9vw,84px);line-height:1;letter-spacing:-.02em;margin:.12em 0 0;color:var(--ink)}
+.underline{display:block;width:72px;height:4px;border-radius:2px;background:var(--orange);margin:20px auto 16px}
+.tagline{margin:0;font-size:clamp(16px,2.4vw,20px);letter-spacing:.14em;color:var(--brindle)}
+
+.intro{padding-top:36px;padding-bottom:24px;text-align:center}
+.eyebrow{color:var(--orange-text);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;margin:0}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:clamp(28px,4.4vw,42px);line-height:1.15;margin:.35em 0 .45em;max-width:720px}
+.intro h1{margin-left:auto;margin-right:auto}
+.lede{font-size:19px;color:var(--muted);max-width:660px;margin:0 auto 26px}
+h2{font-size:clamp(26px,3.6vw,34px);margin:64px 0 8px}
+h2::after{content:"";display:block;width:44px;height:3px;border-radius:2px;background:var(--orange);margin-top:10px}
+.btn{display:inline-block;background:var(--orange);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:11px 24px;font-weight:700;text-decoration:none;cursor:pointer;font-size:16px;box-shadow:0 2px 0 var(--ink);transition:transform .08s ease,box-shadow .08s ease}
+.btn:hover{color:var(--ink);transform:translateY(1px);box-shadow:0 1px 0 var(--ink)}
+.tag{font-size:12px;font-weight:700;color:var(--orange-text);text-transform:uppercase;letter-spacing:.06em}
+.note{color:var(--muted)}
+.join{text-align:center}
+.join h2::after{margin-left:auto;margin-right:auto}
+.foot{border-top:1px solid var(--line);margin-top:72px;padding-top:20px;padding-bottom:40px;color:var(--muted);font-size:14px;text-align:center}
+.foot a{color:var(--muted)}
+.foot a:hover{color:var(--orange-text)}
+
+/* Featured product */
+.featured{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:14px;padding:22px 24px;margin-top:20px}
+.featured h3{margin:.15em 0 .25em;font-size:28px}
+.featured p{margin:0;font-size:18px}
+.featured .featured-note{margin-top:10px;font-size:16px;color:var(--muted)}
+.cards{display:grid;gap:16px;margin-top:20px;grid-template-columns:1fr}
+.cards .featured{margin-top:0;padding:18px 20px;display:flex;flex-direction:column}
+.cards .featured h3{font-size:24px}
+.cards .featured p{font-size:16px}
+.cards .featured .featured-note{font-size:14px;margin-top:auto;padding-top:12px}
+.cards .featured.next{border-left-color:var(--tan)}
+.cards .featured.later{border-left-color:var(--line)}
+@media (min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
+.lab{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.lab li{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--tan);border-radius:14px;padding:18px 20px}
+.lab h3{margin:.15em 0 .2em;font-size:21px}
+.lab p{margin:0;color:var(--muted)}
+.also{color:var(--muted);margin-top:18px}
+.also strong{color:var(--brindle)}
+
+/* 404 + privacy */
+.mini-logo,.mini-logo img{display:block;margin:0 auto}
+.mini-logo{margin-bottom:10px}
+.mini-logo img{width:150px}
+.prose{padding-top:28px}
+.prose>*{max-width:680px}
+.prose h1{margin:.2em 0 .4em}
+.prose h2{font-size:24px;margin-top:36px}
+@media (max-width:520px){
+  nav a{margin-left:12px;font-size:15px}
+  nav .nav-extra{display:none}
+  .brand{font-size:20px}
+  .lede{font-size:17px}
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucky Sushi: teaching AI to fetch what you actually threw</title>
+  <meta name="description" content="Lucky Sushi is a small AI lab named after two dogs. We work on AI alignment: making AI systems do what people actually meant, and measuring it. Rally, our bench for AI agents; Scout, which traces what agents do; Handler, which keeps them moving; reporting on where AI hits and misses; and a few side projects.">
+  <link rel="canonical" href="https://luckysushi.ai/">
+  <meta name="theme-color" content="#efe7de">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lucky Sushi">
+  <meta property="og:url" content="https://luckysushi.ai/">
+  <meta property="og:title" content="Lucky Sushi: teaching AI to fetch what you actually threw">
+  <meta property="og:description" content="A small AI lab named after two dogs, working on making AI do what people actually meant. Rally, Scout, Handler, reporting, and side projects.">
+  <meta property="og:image" content="https://luckysushi.ai/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Lucky Sushi logo: Lucky, a brindle Great Dane mix, and Sushi, a Shih Tzu, with the line 'Good boy. Mostly.'">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lucky Sushi: teaching AI to fetch what you actually threw">
+  <meta name="twitter:description" content="Making AI do what you actually meant: Rally, Scout, Handler, reporting, and side projects from a small lab named after two dogs.">
+  <meta name="twitter:image" content="https://luckysushi.ai/assets/og-image.jpg">
+  <link rel="stylesheet" href="/styles.css?v=050f5398b5">
+</head>
+<body>
+  <header class="wrap top">
+    <a class="brand" href="/">Lucky Sushi</a>
+    <nav aria-label="Main"><a href="#bench">Rally</a><a class="nav-extra" href="#scout">Scout</a><a class="nav-extra" href="#handler">Handler</a><a href="#off-leash-lab">Lab</a><a href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe</a></nav>
+  </header>
+
+  <main>
+    <section class="wrap lockup" aria-label="Lucky Sushi">
+      <picture>
+        <source srcset="/assets/lucky-sushi-dogs.webp" type="image/webp">
+        <img src="/assets/lucky-sushi-dogs.png" width="720" height="568" alt="Lucky, a brindle Great Dane mix, lying beside Sushi, a Shih Tzu with an orange topknot, inside a thin circle">
+      </picture>
+      <p class="wordmark">Lucky Sushi</p>
+      <span class="underline" aria-hidden="true"></span>
+      <p class="tagline">Good boy. Mostly.</p>
+    </section>
+
+    <section class="wrap intro">
+      <p class="eyebrow">A small AI lab named after two dogs</p>
+      <h1>Teaching AI to fetch what you actually threw.</h1>
+      <p class="lede">Our mission is AI alignment: making AI systems do what people actually intend, and measuring whether they do. Lucky and Sushi were good dogs. Mostly. They&rsquo;d fetch, eventually, on their own terms. Most AI agents are the same way.</p>
+      <a class="btn" href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe on Substack</a>
+    </section>
+
+    <section id="bench" class="wrap">
+      <h2>What we&rsquo;re chewing on</h2>
+      <p>Train them, track them, handle them: now, next, and later.</p>
+      <div class="cards">
+        <div class="featured now">
+          <span class="tag">Now &middot; Early build</span>
+          <h3>Rally</h3>
+          <p>Our bench for AI agents: a sandbox and eval harness that checks whether an agent does what you meant, before you ship it. Like a rally course for dogs, it's judged sign by sign. You lay out the course, the agent runs it, and a clean run earns a Q. Agents work their way up from Novice to Master. Built on Claude.</p>
+        </div>
+        <div id="scout" class="featured next">
+          <span class="tag">Next</span>
+          <h3>Scout</h3>
+          <p>A scout ranges ahead and reports back. Scout picks up the trail every agent leaves: OpenTelemetry traces plus messages from Claude and Codex sessions, cloud agents, Slack threads, and GitHub issues and pull requests. It brings back one record of what each agent did, asked and decided, and where it's stuck.</p>
+        </div>
+        <div id="handler" class="featured later">
+          <span class="tag">Later</span>
+          <h3>Handler</h3>
+          <p>Run enough agents and they all end up waiting on you. Handler reads what Scout brings back and turns every open question into a clear choice with a recommendation. You answer in a word, and Handler passes it back to the agent.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="journal" class="wrap">
+      <h2>The reporting</h2>
+      <p>Field reports and teardowns on where AI does what people meant, and where it chews the couch instead. First-hand, specific, and backed by numbers we can stand behind, from Aaron Wroblewski and guest practitioners. <a href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe to get the first one.</a></p>
+    </section>
+
+    <section id="off-leash-lab" class="wrap">
+      <h2>The Off Leash Lab</h2>
+      <div class="featured">
+        <span class="tag">Running daily</span>
+        <p>Agents that train themselves. Every night they review their own work, and the lessons become skills the whole pack picks up. Each decision we close becomes a Rally case, so the next run goes cleaner.</p>
+      </div>
+    </section>
+
+    <section id="side-quests" class="wrap">
+      <h2>Side quests</h2>
+      <p>Other things we're building and poking at. The tag says how far along each one is.</p>
+      <ul class="lab">
+        <li><span class="tag">Working prototype</span><h3>Marey</h3><p>Frame-by-frame ski video analysis for Mac and iPhone. On-device pose tracking measures body angles through each turn, and it says so when the camera angle can't back the numbers up.</p></li>
+        <li><span class="tag">Prototype, in review</span><h3>Timer</h3><p>A wind-up timer for Mac, iPhone and Apple Watch. Twist to set it, then glance at a shrinking pie. No ticking digits.</p></li>
+        <li><span class="tag">Working v1</span><h3>AgentDeck</h3><p>A Stream Deck plugin that shows what your Claude Code session is doing (working, done, or waiting on you), with one-tap buttons for skills and resuming sessions.</p></li>
+      </ul>
+      <p class="also"><strong>On the whiteboard:</strong> a checkup that scores a team's agent setup and writes a fix-first plan, and tools that take the busywork out of interview loops.</p>
+    </section>
+
+    <section id="subscribe" class="wrap join">
+      <h2>Get the newsletter</h2>
+      <p>Reports from the lab and news on Rally, Scout and Handler. Treats not included.</p>
+      <p><a class="btn" href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe on Substack</a></p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="foot">
+      <p>&copy; 2026 Lucky Sushi · <a href="https://luckysushi.substack.com" rel="noopener">Substack</a> · <a href="/privacy">Privacy</a></p>
+    </div>
+  </footer>
+</body>
+</html>
