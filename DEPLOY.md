@@ -43,6 +43,7 @@ Optional later (needs Aaron's yes): push-to-deploy. Direct Upload projects can't
 
 | When (PT) | Deployment | Source |
 |---|---|---|
+| 2026-10-08 ~4:20 PM | `0e0ed32c` | `eb326d0`: "Follow on X" outline button (`.btn-secondary`) beside both "Subscribe on Substack" buttons (hero + newsletter) in a wrapping `.ctas` row; CSS busted to `?v=80037ce1b1`. Uploaded the 4 changed files with a scoped 30-minute upload token, which was deleted afterward. Rollback target: `14f09757` |
 | 2026-10-08 ~4:08 PM | `14f09757` | `7966512`: footer X link (`https://x.com/luckysushiai`, `rel="me noopener"`) on home, privacy and 404. Uploaded the 3 changed HTML files with a scoped 30-minute upload token, which was deleted afterward. Rollback target: `581bc88c` |
 | 2026-10-08 ~2:27 PM | `581bc88c` | `luckysushiai/site` `a6fe85e`, from a clean clone. Same manifest and `_headers` as `96a120ff`; first deploy from this repo. All assets were already uploaded under the same hashes, so no upload token was needed |
 | 2026-10-08 ~8:27 AM | `96a120ff` | Pre-split repo. Nav "Lab" goes to `#off-leash-lab` |
