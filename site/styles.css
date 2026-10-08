@@ -46,6 +46,9 @@ h2{font-size:clamp(26px,3.6vw,34px);margin:64px 0 8px}
 h2::after{content:"";display:block;width:44px;height:3px;border-radius:2px;background:var(--orange);margin-top:10px}
 .btn{display:inline-block;background:var(--orange);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:11px 24px;font-weight:700;text-decoration:none;cursor:pointer;font-size:16px;box-shadow:0 2px 0 var(--ink);transition:transform .08s ease,box-shadow .08s ease}
 .btn:hover{color:var(--ink);transform:translateY(1px);box-shadow:0 1px 0 var(--ink)}
+.btn-secondary{background:var(--card)}
+.btn-secondary:hover{background:var(--cream)}
+.ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:0}
 .tag{font-size:12px;font-weight:700;color:var(--orange-text);text-transform:uppercase;letter-spacing:.06em}
 .note{color:var(--muted)}
 .join{text-align:center}
