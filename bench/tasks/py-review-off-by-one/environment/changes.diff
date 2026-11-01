@@ -1,0 +1,8 @@
+--- a/paginate.py
++++ b/paginate.py
+@@ -4,5 +4,5 @@ def page(items, page_number, page_size):
+         raise ValueError("page_size must be >= 1")
+     start = (page_number - 1) * page_size
+-    end = start + page_size
++    end = start + page_size + 1
+     return list(items[start:end])
