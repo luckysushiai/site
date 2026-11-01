@@ -15,7 +15,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
-from collect import evidence_label, is_effect_measurement
+from collect import EFFECT_METRICS, EXCLUDED_METRICS, evidence_label, is_effect_measurement
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = ROOT / "data" / "skills" / "skills.json"
@@ -61,6 +61,21 @@ def _walk_children(node, path: str, errors: list[str]) -> int:
     return nulls
 
 
+def check_allowlist(errors: list[str]) -> None:
+    """Effect labels come from an explicit metric allowlist, never a wildcard."""
+    for key, allowed in EFFECT_METRICS.items():
+        if not isinstance(allowed, frozenset):
+            errors.append(f"EFFECT_METRICS {key} must be an explicit frozenset")
+    for key, banned in EXCLUDED_METRICS.items():
+        allowed = EFFECT_METRICS.get(key)
+        if not isinstance(allowed, frozenset):
+            errors.append(f"EFFECT_METRICS missing an allowlist for {key}")
+            continue
+        overlap = sorted(banned & allowed)
+        if overlap:
+            errors.append(f"{key} allowlist includes excluded metrics {overlap}")
+
+
 def main() -> None:
     schema = json.loads(SCHEMA_PATH.read_text())
     data = json.loads(DATA_PATH.read_text())
@@ -74,6 +89,7 @@ def main() -> None:
         fail(f"{len(schema_errors)} schema error(s)")
 
     errors: list[str] = []
+    check_allowlist(errors)
     skills = data.get("skills") or []
     if len(skills) != 20:
         errors.append(f"expected 20 skills, found {len(skills)}")
@@ -115,6 +131,13 @@ def main() -> None:
     print(
         "evidence_labels "
         + " ".join(f"{name}={labels[name]}" for name in sorted(labels))
+    )
+    print(
+        "effect_allowlist "
+        + " ".join(
+            f"{key}:{'|'.join(sorted(names)) if names else '-'}"
+            for key, names in sorted(EFFECT_METRICS.items())
+        )
     )
     if errors:
         for err in errors:
