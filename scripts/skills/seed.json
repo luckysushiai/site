@@ -1,0 +1,147 @@
+[
+  {
+    "job": "frontend-design",
+    "owner": "anthropics",
+    "repo": "skills",
+    "slug": "frontend-design",
+    "folder": "skills/frontend-design"
+  },
+  {
+    "job": "frontend-design",
+    "owner": "leonxlnx",
+    "repo": "taste-skill",
+    "slug": "design-taste-frontend",
+    "folder": "skills/taste-skill"
+  },
+  {
+    "job": "frontend-design",
+    "owner": "nextlevelbuilder",
+    "repo": "ui-ux-pro-max-skill",
+    "slug": "ui-ux-pro-max",
+    "folder": ".claude/skills/ui-ux-pro-max",
+    "ose_short": "ui-ux-pro-max"
+  },
+  {
+    "job": "frontend-design",
+    "owner": "pbakaus",
+    "repo": "impeccable",
+    "slug": "impeccable",
+    "folder": ".claude/skills/impeccable"
+  },
+  {
+    "job": "frontend-design",
+    "owner": "emilkowalski",
+    "repo": "skills",
+    "slug": "emil-design-eng",
+    "folder": "skills/emil-design-eng"
+  },
+  {
+    "job": "frontend-design",
+    "owner": "vercel-labs",
+    "repo": "agent-skills",
+    "slug": "web-design-guidelines",
+    "folder": "skills/web-design-guidelines"
+  },
+  {
+    "job": "frontend-design",
+    "owner": "superdesigndev",
+    "repo": "superdesign-skill",
+    "slug": "superdesign",
+    "folder": "skills/superdesign",
+    "ose_short": "superdesign"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "mattpocock",
+    "repo": "skills",
+    "slug": "tdd",
+    "folder": "skills/engineering/tdd"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "mattpocock",
+    "repo": "skills",
+    "slug": "code-review",
+    "folder": "skills/engineering/code-review"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "mattpocock",
+    "repo": "skills",
+    "slug": "diagnosing-bugs",
+    "folder": "skills/engineering/diagnosing-bugs"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "obra",
+    "repo": "superpowers",
+    "slug": "test-driven-development",
+    "folder": "skills/test-driven-development"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "obra",
+    "repo": "superpowers",
+    "slug": "systematic-debugging",
+    "folder": "skills/systematic-debugging"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "obra",
+    "repo": "superpowers",
+    "slug": "requesting-code-review",
+    "folder": "skills/requesting-code-review"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "addyosmani",
+    "repo": "agent-skills",
+    "slug": "code-review-and-quality",
+    "folder": "skills/code-review-and-quality"
+  },
+  {
+    "job": "code-review-testing-debugging",
+    "owner": "anthropics",
+    "repo": "skills",
+    "slug": "webapp-testing",
+    "folder": "skills/webapp-testing"
+  },
+  {
+    "job": "docs-slides-writing",
+    "owner": "anthropics",
+    "repo": "skills",
+    "slug": "pptx",
+    "folder": "skills/pptx",
+    "ose_short": "anthropics-pptx"
+  },
+  {
+    "job": "docs-slides-writing",
+    "owner": "hugohe3",
+    "repo": "ppt-master",
+    "slug": "ppt-master",
+    "folder": "skills/ppt-master",
+    "ose_short": "ppt-master"
+  },
+  {
+    "job": "docs-slides-writing",
+    "owner": "zarazhangrui",
+    "repo": "frontend-slides",
+    "slug": "frontend-slides",
+    "folder": "",
+    "ose_short": "frontend-slides"
+  },
+  {
+    "job": "docs-slides-writing",
+    "owner": "anthropics",
+    "repo": "skills",
+    "slug": "docx",
+    "folder": "skills/docx"
+  },
+  {
+    "job": "docs-slides-writing",
+    "owner": "coreyhaines31",
+    "repo": "marketingskills",
+    "slug": "copywriting",
+    "folder": "skills/copywriting"
+  }
+]

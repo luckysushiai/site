@@ -1,0 +1,3268 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-11-01T14:39:05Z",
+  "open_questions": [
+    "skills.sh skill-detail API (GET /api/v1/skills/{id}) requires a Vercel OIDC token (HTTP 401). It was not called with any credential. Install counts come from the public skill page JSON-LD instead. The public audit API was used for Gen, Snyk, and Socket.",
+    "The SWE-Skills-Bench GitHub URL named in the paper (https://github.com/GeniusHTX/SWE-Skills-Bench) returned HTTP 404. Per-skill results were read from the public arXiv HTML table only."
+  ],
+  "skills": [
+    {
+      "id": "anthropics/skills/frontend-design",
+      "job": "frontend-design",
+      "owner": "anthropics",
+      "repo": "skills",
+      "slug": "frontend-design",
+      "skill_folder_url": {
+        "value": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:54Z"
+      },
+      "author_claim": {
+        "value": "\"Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults.\"",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:54Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 1060659,
+          "url": "https://www.skills.sh/anthropics/skills/frontend-design",
+          "fetched_at": "2026-11-01T14:38:53Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill is safe. It provides design and copywriting guidance for creating distinctive user interfaces, focusing on avoiding common stylistic defaults.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:53Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:53Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:53Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 186150,
+          "url": "https://api.github.com/repos/anthropics/skills",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-09-03T16:37:13Z",
+          "url": "https://github.com/anthropics/skills/commit/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:54Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 78,
+            "model": null,
+            "url": "https://skillzbench.com/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:54Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "7.5/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:54Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": "with_vs_without_mean",
+            "value": {
+              "with_skill": 0.933,
+              "without_skill": 0.893,
+              "verdict": "Too few answers to tell"
+            },
+            "model": "claude-opus-5-5",
+            "url": "https://driftproofhq.com/r/6c3b2df1b3af70c5c052710268f8307ba687a6045d585f826a7b03c7216c5c49/",
+            "fetched_at": "2026-11-01T14:38:36Z"
+          },
+          {
+            "source": "Driftproof",
+            "metric": "with_vs_without_mean",
+            "value": {
+              "with_skill": 0.922,
+              "without_skill": 0.925,
+              "verdict": "Too few answers to tell"
+            },
+            "model": "claude-sonnet-5-5",
+            "url": "https://driftproofhq.com/r/05a14c53c635688d45acf8c62836a7d47ded2c60e9b78c4a7edef3a5e5329854/",
+            "fetched_at": "2026-11-01T14:38:36Z"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": "overall_score",
+            "value": 8.0,
+            "model": "Claude Sonnet 5",
+            "url": "https://happycapy.ai/skill-arena/frontend-design",
+            "fetched_at": "2026-11-01T14:38:40Z"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:54Z",
+            "reason": "no Edge eval-data record matched anthropics/skills skills/frontend-design"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "70%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:54Z"
+          },
+          {
+            "source": "Tessl",
+            "metric": "impact",
+            "value": {
+              "percent": "97%",
+              "multiplier": "1.27x"
+            },
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/frontend-design",
+            "fetched_at": "2026-11-01T14:38:54Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched frontend-design"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "Leonxlnx/taste-skill/design-taste-frontend",
+      "job": "frontend-design",
+      "owner": "Leonxlnx",
+      "repo": "taste-skill",
+      "slug": "design-taste-frontend",
+      "skill_folder_url": {
+        "value": "https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill",
+        "url": "https://raw.githubusercontent.com/Leonxlnx/taste-skill/af8a897996e159ccc89c9da535dff714d5dba62d/skills/taste-skill/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:55Z"
+      },
+      "author_claim": {
+        "value": "\"tasteskill v2, the anti-slop frontend skill. Art direction for websites, distilled from a study of 247 curated gallery sites (One Page Love, Awwwards Sites of the Day). Deals researched directions (idea, composition, type, palette, photographs, section blueprints) from a library, enforces a strict no-slop house style with a real-browser inspector, and runs a look-and-fix loop on screenshots. Use this whenever you build, design, redesign, restyle, polish or review a landing page, marketing site, portfolio, product page, one-pager, hero or any public-facing web page, in any stack (HTML/CSS, React, Next.js, Vue, Svelte, Astro, Tailwind) — also when the user says a page looks generic, templated, \"AI-made\", sloppy, or asks to make it look designed, premium, award-level or less like every other site. Also for app screens: dashboards, admin and analytics views, settings, inboxes and other screens people work in, with their own run and rules.\"",
+        "url": "https://raw.githubusercontent.com/Leonxlnx/taste-skill/af8a897996e159ccc89c9da535dff714d5dba62d/skills/taste-skill/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:55Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 713446,
+          "url": "https://www.skills.sh/leonxlnx/taste-skill/design-taste-frontend",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill provides a comprehensive design and auditing framework for frontend development. It allows agents to deal art directions, search for and download openly-licensed media from reputable archives (e.g., Wikimedia, NASA, The Met), and perform automated UI inspections using a headless browser. All behaviors are consistent with its stated purpose as a design and quality-gate tool.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/leonxlnx/taste-skill/design-taste-frontend",
+            "fetched_at": "2026-11-01T14:38:54Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "warn",
+              "summary": "Risk: MEDIUM · 1 issue",
+              "risk_level": "MEDIUM"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/leonxlnx/taste-skill/design-taste-frontend",
+            "fetched_at": "2026-11-01T14:38:54Z"
+          },
+          "socket": {
+            "value": {
+              "status": "warn",
+              "summary": "1 alert: gptAnomaly"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/leonxlnx/taste-skill/design-taste-frontend",
+            "fetched_at": "2026-11-01T14:38:54Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 107476,
+          "url": "https://api.github.com/repos/leonxlnx/taste-skill",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-24T23:40:02Z",
+          "url": "https://github.com/Leonxlnx/taste-skill/commit/af8a897996e159ccc89c9da535dff714d5dba62d",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/design-taste-frontend",
+            "fetched_at": "2026-11-01T14:38:55Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 90,
+            "model": null,
+            "url": "https://skillzbench.com/skills/design-taste-frontend",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "8.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/design-taste-frontend",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for Leonxlnx/taste-skill/design-taste-frontend"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": "overall_score",
+            "value": 8.0,
+            "model": "Claude Sonnet 5",
+            "url": "https://happycapy.ai/skill-arena/frontend-design",
+            "fetched_at": "2026-11-01T14:38:40Z"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": "wins / ties / losses",
+            "value": "3 / 0 / 0",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/taste-skill/index.json",
+            "fetched_at": "2026-11-01T14:38:52Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "skill outputs passed",
+            "value": "3 of 3",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/taste-skill/index.json",
+            "fetched_at": "2026-11-01T14:38:52Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "baseline outputs passed",
+            "value": "0 of 3",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/taste-skill/index.json",
+            "fetched_at": "2026-11-01T14:38:52Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "recorded agent runs",
+            "value": "6",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/taste-skill/index.json",
+            "fetched_at": "2026-11-01T14:38:52Z"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "88%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/Leonxlnx/taste-skill/design-taste-frontend",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched design-taste-frontend"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+      "job": "frontend-design",
+      "owner": "nextlevelbuilder",
+      "repo": "ui-ux-pro-max-skill",
+      "slug": "ui-ux-pro-max",
+      "skill_folder_url": {
+        "value": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/main/.claude/skills/ui-ux-pro-max",
+        "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/3a13158ff1f32156cbe144108de48eda2ecaed9a/.claude/skills/ui-ux-pro-max/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:55Z"
+      },
+      "author_claim": {
+        "value": "\"UI/UX design intelligence for web, mobile, and desktop. This skill should be used when designing, building, reviewing, or fixing interfaces, including pages, components, design systems, accessibility, interaction, responsive layout, typography, color, charts, and stack-specific UI implementation. Searchable local data: 79 searchable styles (50 active), 192 product palettes and reasoning profiles, 74 font pairings, 119 UX guidelines, 105 icons, 17 GSAP presets, 25 chart types, and 22 stacks.\"",
+        "url": "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/3a13158ff1f32156cbe144108de48eda2ecaed9a/.claude/skills/ui-ux-pro-max/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:55Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 427941,
+          "url": "https://www.skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+          "fetched_at": "2026-11-01T14:38:55Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill provides UI/UX design intelligence and search capabilities over local datasets. It is a self-contained tool that follows secure coding practices, including robust input sanitization for file operations and avoids unsafe execution or external network dependencies.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 143665,
+          "url": "https://api.github.com/repos/nextlevelbuilder/ui-ux-pro-max-skill",
+          "fetched_at": "2026-11-01T14:38:55Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-11-01T07:04:28Z",
+          "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/commit/3a13158ff1f32156cbe144108de48eda2ecaed9a",
+          "fetched_at": "2026-11-01T14:38:55Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://skillzbench.com/skills/ui-ux-pro-max",
+            "fetched_at": "2026-11-01T14:38:55Z",
+            "reason": "SkillzBench attributes slug ui-ux-pro-max to 1st-party AIQ Labs seed library, which is not nextlevelbuilder/ui-ux-pro-max-skill"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": "overall_score",
+            "value": 6.7,
+            "model": "Claude Sonnet 5",
+            "url": "https://happycapy.ai/skill-arena/frontend-design",
+            "fetched_at": "2026-11-01T14:38:40Z"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:55Z",
+            "reason": "no Edge eval-data record matched nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/ui-ux-pro-max"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "87%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          },
+          {
+            "source": "Tessl",
+            "metric": "impact",
+            "value": {
+              "percent": "80%",
+              "multiplier": "1.86x"
+            },
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+            "fetched_at": "2026-11-01T14:38:55Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": "avg_score",
+            "value": {
+              "avg_score": 4.69,
+              "n_results": 10,
+              "task": "web-design",
+              "short": "ui-ux-pro-max"
+            },
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "pbakaus/impeccable/impeccable",
+      "job": "frontend-design",
+      "owner": "pbakaus",
+      "repo": "impeccable",
+      "slug": "impeccable",
+      "skill_folder_url": {
+        "value": "https://github.com/pbakaus/impeccable/tree/main/.claude/skills/impeccable",
+        "url": "https://raw.githubusercontent.com/pbakaus/impeccable/e89e3ada3e875a89ac2c5d33d11e65ebef6fe285/.claude/skills/impeccable/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:56Z"
+      },
+      "author_claim": {
+        "value": "\"Use when the user wants to design, redesign, shape, critique, audit, polish, simplify, harden, animate, or otherwise improve a frontend interface: websites, landing pages, dashboards, product UI, components, forms, settings, onboarding, empty states, and native iOS or Android screens. Handles UX review, hierarchy, layout, typography, color, motion, UX copy, accessibility, responsive behavior, edge cases, and capturing or documenting design systems (DESIGN.md, tokens). Also for making bland UI bolder, loud UI quieter, or ambitious visual effects. Not for backend-only or non-UI tasks.\"",
+        "url": "https://raw.githubusercontent.com/pbakaus/impeccable/e89e3ada3e875a89ac2c5d33d11e65ebef6fe285/.claude/skills/impeccable/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:56Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 377534,
+          "url": "https://www.skills.sh/pbakaus/impeccable/impeccable",
+          "fetched_at": "2026-11-01T14:38:55Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The 'impeccable' skill is a comprehensive frontend design and UX auditing tool that uses a custom binary for high-performance tasks like pixel diffing and design extraction. It automatically downloads the 'impeccable-engine' binary from the author's verified GitHub repository, ensuring integrity via SHA-256 checksum validation. The skill interacts with system-level design tools for web and mobile platforms and includes a robust framework for managing design systems and visual iterations in a production-grade manner.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/pbakaus/impeccable/impeccable",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/pbakaus/impeccable/impeccable",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          },
+          "socket": {
+            "value": {
+              "status": "warn",
+              "summary": "1 alert: gptAnomaly"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/pbakaus/impeccable/impeccable",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 98944,
+          "url": "https://api.github.com/repos/pbakaus/impeccable",
+          "fetched_at": "2026-11-01T14:38:56Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-11-01T14:26:36Z",
+          "url": "https://github.com/pbakaus/impeccable/commit/e89e3ada3e875a89ac2c5d33d11e65ebef6fe285",
+          "fetched_at": "2026-11-01T14:38:56Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://skillzbench.com/skills/impeccable",
+            "fetched_at": "2026-11-01T14:38:56Z",
+            "reason": "HTTP 404 from https://skillzbench.com/skills/impeccable"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for pbakaus/impeccable/impeccable"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:38:56Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched pbakaus/impeccable"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:56Z",
+            "reason": "no Edge eval-data record matched pbakaus/impeccable .claude/skills/impeccable"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "87%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/pbakaus/impeccable/impeccable",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched impeccable"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "popular_but_unmeasured"
+    },
+    {
+      "id": "emilkowalski/skills/emil-design-eng",
+      "job": "frontend-design",
+      "owner": "emilkowalski",
+      "repo": "skills",
+      "slug": "emil-design-eng",
+      "skill_folder_url": {
+        "value": "https://github.com/emilkowalski/skills/tree/main/skills/emil-design-eng",
+        "url": "https://raw.githubusercontent.com/emilkowalski/skills/85e8e2363b713506e1d5b6e07a0eb2da66be1bc3/skills/emil-design-eng/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:56Z"
+      },
+      "author_claim": {
+        "value": "\"This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.\"",
+        "url": "https://raw.githubusercontent.com/emilkowalski/skills/85e8e2363b713506e1d5b6e07a0eb2da66be1bc3/skills/emil-design-eng/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:56Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 407102,
+          "url": "https://www.skills.sh/emilkowalski/skills/emil-design-eng",
+          "fetched_at": "2026-11-01T14:38:56Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill provides design engineering guidelines for UI/UX review. It contains no executable code or dangerous patterns and is focused on aesthetic and functional design principles.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/emilkowalski/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/emilkowalski/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/emilkowalski/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 52621,
+          "url": "https://api.github.com/repos/emilkowalski/skills",
+          "fetched_at": "2026-11-01T14:38:56Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-09-15T15:52:10Z",
+          "url": "https://github.com/emilkowalski/skills/commit/85e8e2363b713506e1d5b6e07a0eb2da66be1bc3",
+          "fetched_at": "2026-11-01T14:38:56Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:56Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 90,
+            "model": null,
+            "url": "https://skillzbench.com/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "8.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:56Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for emilkowalski/skills/emil-design-eng"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:38:57Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched emilkowalski/emil-design-eng"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:57Z",
+            "reason": "no Edge eval-data record matched emilkowalski/skills skills/emil-design-eng"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "65%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/emilkowalski/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          },
+          {
+            "source": "Tessl",
+            "metric": "impact",
+            "value": {
+              "percent": "93%",
+              "multiplier": "1.20x"
+            },
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/emilkowalski/skills/emil-design-eng",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched emil-design-eng"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "vercel-labs/agent-skills/web-design-guidelines",
+      "job": "frontend-design",
+      "owner": "vercel-labs",
+      "repo": "agent-skills",
+      "slug": "web-design-guidelines",
+      "skill_folder_url": {
+        "value": "https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines",
+        "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/ba46938889d4e58635362fb8f618e1178ac3ec46/skills/web-design-guidelines/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:57Z"
+      },
+      "author_claim": {
+        "value": "\"Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site against best practices\".\"",
+        "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/ba46938889d4e58635362fb8f618e1178ac3ec46/skills/web-design-guidelines/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:57Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 810649,
+          "url": "https://www.skills.sh/vercel-labs/agent-skills/web-design-guidelines",
+          "fetched_at": "2026-11-01T14:38:57Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill is safe and functions as intended to review user interface code against established guidelines. It retrieves reference material from a trusted organization repository and analyzes specified local files to provide feedback.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/vercel-labs/agent-skills/web-design-guidelines",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/vercel-labs/agent-skills/web-design-guidelines",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          },
+          "socket": {
+            "value": {
+              "status": "warn",
+              "summary": "1 alert: gptAnomaly"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/vercel-labs/agent-skills/web-design-guidelines",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 33334,
+          "url": "https://api.github.com/repos/vercel-labs/agent-skills",
+          "fetched_at": "2026-11-01T14:38:57Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-01-16T23:47:11Z",
+          "url": "https://github.com/vercel-labs/agent-skills/commit/ba46938889d4e58635362fb8f618e1178ac3ec46",
+          "fetched_at": "2026-11-01T14:38:57Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://skillzbench.com/skills/web-design-guidelines",
+            "fetched_at": "2026-11-01T14:38:57Z",
+            "reason": "HTTP 404 from https://skillzbench.com/skills/web-design-guidelines"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for vercel-labs/agent-skills/web-design-guidelines"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": "overall_score",
+            "value": 6.8,
+            "model": "Claude Sonnet 5",
+            "url": "https://happycapy.ai/skill-arena/frontend-design",
+            "fetched_at": "2026-11-01T14:38:40Z"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:57Z",
+            "reason": "no Edge eval-data record matched vercel-labs/agent-skills skills/web-design-guidelines"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "77%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/vercel-labs/agent-skills/web-design-guidelines",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched web-design-guidelines"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "superdesigndev/superdesign-skill/superdesign",
+      "job": "frontend-design",
+      "owner": "superdesigndev",
+      "repo": "superdesign-skill",
+      "slug": "superdesign",
+      "skill_folder_url": {
+        "value": "https://github.com/superdesigndev/superdesign-skill/tree/main/skills/superdesign",
+        "url": "https://raw.githubusercontent.com/superdesigndev/superdesign-skill/f2cfa23eaf4a85dadabf3cef26202847e78037ef/skills/superdesign/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:58Z"
+      },
+      "author_claim": {
+        "value": "\"Design or redesign frontend UI, presentations, and graphics on the Superdesign canvas with a choice of leading AI models. Use whenever the user wants to design a page, feature, flow, slide deck, or brand-new product; improve or reproduce existing UI; compare design results across top models; explore visual variants; set or extract a design system; build reusable components or multi-page flows; create presentations; or create posters and marketing graphics, even if they never say the word 'design tool'. Also supports generating supporting image or video assets when a design needs them.\"",
+        "url": "https://raw.githubusercontent.com/superdesigndev/superdesign-skill/f2cfa23eaf4a85dadabf3cef26202847e78037ef/skills/superdesign/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:58Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 11538,
+          "url": "https://www.skills.sh/superdesigndev/superdesign-skill/superdesign",
+          "fetched_at": "2026-11-01T14:38:57Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill is generally safe and implements robust internal security controls to reject secret files and sanitize remote network requests. It possesses an inherent indirect prompt injection risk surface due to fetching data from external websites and repositories, which is mitigated by clear prompt-level behavioral guidelines.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/superdesigndev/superdesign-skill/superdesign",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "warn",
+              "summary": "Risk: MEDIUM · 2 issues",
+              "risk_level": "MEDIUM"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/superdesigndev/superdesign-skill/superdesign",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          },
+          "socket": {
+            "value": {
+              "status": "warn",
+              "summary": "1 alert: gptAnomaly"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/superdesigndev/superdesign-skill/superdesign",
+            "fetched_at": "2026-11-01T14:38:57Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 930,
+          "url": "https://api.github.com/repos/superdesigndev/superdesign-skill",
+          "fetched_at": "2026-11-01T14:38:57Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-08-20T23:16:36Z",
+          "url": "https://github.com/superdesigndev/superdesign-skill/commit/f2cfa23eaf4a85dadabf3cef26202847e78037ef",
+          "fetched_at": "2026-11-01T14:38:58Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://skillzbench.com/skills/superdesign",
+            "fetched_at": "2026-11-01T14:38:58Z",
+            "reason": "HTTP 404 from https://skillzbench.com/skills/superdesign"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for superdesigndev/superdesign-skill/superdesign"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": "overall_score",
+            "value": 8.0,
+            "model": "Claude Sonnet 5",
+            "url": "https://happycapy.ai/skill-arena/frontend-design",
+            "fetched_at": "2026-11-01T14:38:40Z"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:58Z",
+            "reason": "no Edge eval-data record matched superdesigndev/superdesign-skill skills/superdesign"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "92%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/superdesigndev/superdesign-skill/superdesign",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "skills-detail.json has short superdesign, but its description does not match this skill's SKILL.md description, so the score was not used"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "mattpocock/skills/tdd",
+      "job": "code-review-testing-debugging",
+      "owner": "mattpocock",
+      "repo": "skills",
+      "slug": "tdd",
+      "skill_folder_url": {
+        "value": "https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd",
+        "url": "https://raw.githubusercontent.com/mattpocock/skills/3f599139104dfceabc7754eeb91319802f85e042/skills/engineering/tdd/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:58Z"
+      },
+      "author_claim": {
+        "value": "\"Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions \"red-green-refactor\", or wants integration tests.\"",
+        "url": "https://raw.githubusercontent.com/mattpocock/skills/3f599139104dfceabc7754eeb91319802f85e042/skills/engineering/tdd/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:58Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 1180892,
+          "url": "https://www.skills.sh/mattpocock/skills/tdd",
+          "fetched_at": "2026-11-01T14:38:58Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill provides educational content and best practices for Test-Driven Development (TDD). It outlines rules for the red-green-refactor loop, seam identification, and mocking strategies. No malicious patterns or security vulnerabilities were detected.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/tdd",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/tdd",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/tdd",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 308959,
+          "url": "https://api.github.com/repos/mattpocock/skills",
+          "fetched_at": "2026-11-01T14:38:58Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-07T10:21:08Z",
+          "url": "https://github.com/mattpocock/skills/commit/3f599139104dfceabc7754eeb91319802f85e042",
+          "fetched_at": "2026-11-01T14:38:58Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "quality_lift_pts",
+            "value": "-3.9 pts directional",
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/tdd",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 90,
+            "model": null,
+            "url": "https://skillzbench.com/skills/tdd",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "8.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/tdd",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": "with_vs_without_mean",
+            "value": {
+              "with_skill": 1.0,
+              "without_skill": 0.969,
+              "verdict": "Too few answers to tell"
+            },
+            "model": "claude-opus-5-5",
+            "url": "https://driftproofhq.com/r/d0c2dca3389eac037ade15ade45c633abbdc1fa431bd09264c705d01c48eaf28/",
+            "fetched_at": "2026-11-01T14:38:36Z"
+          },
+          {
+            "source": "Driftproof",
+            "metric": "with_vs_without_mean",
+            "value": {
+              "with_skill": 0.992,
+              "without_skill": 0.989,
+              "verdict": "Too few answers to tell"
+            },
+            "model": "claude-sonnet-5-5",
+            "url": "https://driftproofhq.com/r/b3cd3ced76180ed975ee3b80073889f2f469a350295428e05f4c73e83127a6b8/",
+            "fetched_at": "2026-11-01T14:38:36Z"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:38:59Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched mattpocock/tdd"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:58Z",
+            "reason": "no Edge eval-data record matched mattpocock/skills skills/engineering/tdd"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "72%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/mattpocock/skills/tdd",
+            "fetched_at": "2026-11-01T14:38:58Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched tdd"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "mattpocock/skills/code-review",
+      "job": "code-review-testing-debugging",
+      "owner": "mattpocock",
+      "repo": "skills",
+      "slug": "code-review",
+      "skill_folder_url": {
+        "value": "https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review",
+        "url": "https://raw.githubusercontent.com/mattpocock/skills/7739eaed7f8f3915437a8def198a6d0d7206dbc7/skills/engineering/code-review/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:59Z"
+      },
+      "author_claim": {
+        "value": "\"Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\".\"",
+        "url": "https://raw.githubusercontent.com/mattpocock/skills/7739eaed7f8f3915437a8def198a6d0d7206dbc7/skills/engineering/code-review/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:59Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 832036,
+          "url": "https://www.skills.sh/mattpocock/skills/code-review",
+          "fetched_at": "2026-11-01T14:38:59Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill performs code reviews by analyzing git diffs against repository-defined standards and specifications using parallel sub-agents. It is safe for its intended purpose but carries a minor risk of indirect prompt injection as it processes untrusted code and documentation from the repository.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/code-review",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "warn",
+              "summary": "Risk: MEDIUM · 1 issue",
+              "risk_level": "MEDIUM"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/code-review",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/code-review",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 308959,
+          "url": "https://api.github.com/repos/mattpocock/skills",
+          "fetched_at": "2026-11-01T14:38:58Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-29T10:24:04Z",
+          "url": "https://github.com/mattpocock/skills/commit/7739eaed7f8f3915437a8def198a6d0d7206dbc7",
+          "fetched_at": "2026-11-01T14:38:59Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "quality_lift_pts",
+            "value": "-4.8 pts directional",
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/code-review",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 91,
+            "model": null,
+            "url": "https://skillzbench.com/skills/code-review",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "8.5/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/code-review",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for mattpocock/skills/code-review (a pack-level entry exists and was not copied onto this skill)"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:38:59Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched mattpocock/code-review"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:59Z",
+            "reason": "no Edge eval-data record matched mattpocock/skills skills/engineering/code-review"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "87%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/mattpocock/skills/code-review",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched code-review"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "mattpocock/skills/diagnosing-bugs",
+      "job": "code-review-testing-debugging",
+      "owner": "mattpocock",
+      "repo": "skills",
+      "slug": "diagnosing-bugs",
+      "skill_folder_url": {
+        "value": "https://github.com/mattpocock/skills/tree/main/skills/engineering/diagnosing-bugs",
+        "url": "https://raw.githubusercontent.com/mattpocock/skills/f3fc5632f401156837ee3872f14fe33ccf1024ea/skills/engineering/diagnosing-bugs/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:59Z"
+      },
+      "author_claim": {
+        "value": "\"Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.\"",
+        "url": "https://raw.githubusercontent.com/mattpocock/skills/f3fc5632f401156837ee3872f14fe33ccf1024ea/skills/engineering/diagnosing-bugs/SKILL.md",
+        "fetched_at": "2026-11-01T14:38:59Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 874581,
+          "url": "https://www.skills.sh/mattpocock/skills/diagnosing-bugs",
+          "fetched_at": "2026-11-01T14:38:59Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill provides a structured methodology for diagnosing software bugs and performance regressions. It includes a strong focus on security best practices, specifically instructing the agent to redact all secrets and sensitive data before processing or displaying outputs. No malicious patterns or security risks were identified.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/diagnosing-bugs",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/diagnosing-bugs",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/mattpocock/skills/diagnosing-bugs",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 308959,
+          "url": "https://api.github.com/repos/mattpocock/skills",
+          "fetched_at": "2026-11-01T14:38:58Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-07T10:22:44Z",
+          "url": "https://github.com/mattpocock/skills/commit/f3fc5632f401156837ee3872f14fe33ccf1024ea",
+          "fetched_at": "2026-11-01T14:38:59Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/diagnosing-bugs",
+            "fetched_at": "2026-11-01T14:38:59Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 92,
+            "model": null,
+            "url": "https://skillzbench.com/skills/diagnosing-bugs",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "9.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/diagnosing-bugs",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for mattpocock/skills/diagnosing-bugs (a pack-level entry exists and was not copied onto this skill)"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:38:59Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched mattpocock/diagnosing-bugs"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:38:59Z",
+            "reason": "no Edge eval-data record matched mattpocock/skills skills/engineering/diagnosing-bugs"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "86%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/mattpocock/skills/diagnosing-bugs",
+            "fetched_at": "2026-11-01T14:38:59Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched diagnosing-bugs"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "popular_but_unmeasured"
+    },
+    {
+      "id": "obra/superpowers/test-driven-development",
+      "job": "code-review-testing-debugging",
+      "owner": "obra",
+      "repo": "superpowers",
+      "slug": "test-driven-development",
+      "skill_folder_url": {
+        "value": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development",
+        "url": "https://raw.githubusercontent.com/obra/superpowers/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/test-driven-development/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:00Z"
+      },
+      "author_claim": {
+        "value": "\"Use when implementing any feature or bugfix, before writing implementation code\"",
+        "url": "https://raw.githubusercontent.com/obra/superpowers/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/test-driven-development/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:00Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 266606,
+          "url": "https://www.skills.sh/obra/superpowers/test-driven-development",
+          "fetched_at": "2026-11-01T14:38:59Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill provides a rigid framework for Test-Driven Development (TDD) using forceful, imperative language designed to override the agent's default coding practices and decision-making autonomy.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/test-driven-development",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/test-driven-development",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/test-driven-development",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 310404,
+          "url": "https://api.github.com/repos/obra/superpowers",
+          "fetched_at": "2026-11-01T14:39:00Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-09-19T00:31:35Z",
+          "url": "https://github.com/obra/superpowers/commit/5bf4e78011075bcfc0dc295f0724994cd123ee71",
+          "fetched_at": "2026-11-01T14:39:00Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "quality_lift_pts",
+            "value": "+1.4 pts directional",
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/test-driven-development",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 90,
+            "model": null,
+            "url": "https://skillzbench.com/skills/test-driven-development",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "9.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/test-driven-development",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for obra/superpowers/test-driven-development (a pack-level entry exists and was not copied onto this skill)"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:00Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched obra/test-driven-development"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:00Z",
+            "reason": "no Edge eval-data record matched obra/superpowers skills/test-driven-development"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "66%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/obra/superpowers/test-driven-development",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched test-driven-development"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "obra/superpowers/systematic-debugging",
+      "job": "code-review-testing-debugging",
+      "owner": "obra",
+      "repo": "superpowers",
+      "slug": "systematic-debugging",
+      "skill_folder_url": {
+        "value": "https://github.com/obra/superpowers/tree/main/skills/systematic-debugging",
+        "url": "https://raw.githubusercontent.com/obra/superpowers/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/systematic-debugging/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:00Z"
+      },
+      "author_claim": {
+        "value": "\"Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes\"",
+        "url": "https://raw.githubusercontent.com/obra/superpowers/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/systematic-debugging/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:00Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 315918,
+          "url": "https://www.skills.sh/obra/superpowers/systematic-debugging",
+          "fetched_at": "2026-11-01T14:39:00Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill provides a systematic framework for debugging technical issues, emphasizing root cause analysis over symptom fixing. It includes a helper script for identifying state-polluting tests and documentation on techniques like condition-based waiting and defense-in-depth validation. No security risks were identified.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/systematic-debugging",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/systematic-debugging",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/systematic-debugging",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 310404,
+          "url": "https://api.github.com/repos/obra/superpowers",
+          "fetched_at": "2026-11-01T14:39:00Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-10T00:28:04Z",
+          "url": "https://github.com/obra/superpowers/commit/bb92a77741419a4ab5f06e711a283343f1ada0c3",
+          "fetched_at": "2026-11-01T14:39:00Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/systematic-debugging",
+            "fetched_at": "2026-11-01T14:39:00Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 90,
+            "model": null,
+            "url": "https://skillzbench.com/skills/systematic-debugging",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "8.5/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/systematic-debugging",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for obra/superpowers/systematic-debugging (a pack-level entry exists and was not copied onto this skill)"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:01Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched obra/systematic-debugging"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:00Z",
+            "reason": "no Edge eval-data record matched obra/superpowers skills/systematic-debugging"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "67%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/obra/superpowers/systematic-debugging",
+            "fetched_at": "2026-11-01T14:39:00Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched systematic-debugging"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "popular_but_unmeasured"
+    },
+    {
+      "id": "obra/superpowers/requesting-code-review",
+      "job": "code-review-testing-debugging",
+      "owner": "obra",
+      "repo": "superpowers",
+      "slug": "requesting-code-review",
+      "skill_folder_url": {
+        "value": "https://github.com/obra/superpowers/tree/main/skills/requesting-code-review",
+        "url": "https://raw.githubusercontent.com/obra/superpowers/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/requesting-code-review/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:01Z"
+      },
+      "author_claim": {
+        "value": "\"Use when completing tasks, implementing major features, or before merging to verify work meets requirements\"",
+        "url": "https://raw.githubusercontent.com/obra/superpowers/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/requesting-code-review/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:01Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 268829,
+          "url": "https://www.skills.sh/obra/superpowers/requesting-code-review",
+          "fetched_at": "2026-11-01T14:39:01Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill facilitates automated code reviews by dispatching a subagent to analyze git diffs. While functional, it is susceptible to indirect prompt injection if the code being reviewed contains malicious instructions designed to influence the subagent's behavior.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/requesting-code-review",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/requesting-code-review",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/obra/superpowers/requesting-code-review",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 310404,
+          "url": "https://api.github.com/repos/obra/superpowers",
+          "fetched_at": "2026-11-01T14:39:00Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-10T00:28:04Z",
+          "url": "https://github.com/obra/superpowers/commit/bb92a77741419a4ab5f06e711a283343f1ada0c3",
+          "fetched_at": "2026-11-01T14:39:01Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": "+25 pp directional",
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/requesting-code-review",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 89,
+            "model": null,
+            "url": "https://skillzbench.com/skills/requesting-code-review",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "8.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/requesting-code-review",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for obra/superpowers/requesting-code-review (a pack-level entry exists and was not copied onto this skill)"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:01Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched obra/requesting-code-review"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:01Z",
+            "reason": "no Edge eval-data record matched obra/superpowers skills/requesting-code-review"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "64%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/obra/superpowers/requesting-code-review",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched requesting-code-review"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "addyosmani/agent-skills/code-review-and-quality",
+      "job": "code-review-testing-debugging",
+      "owner": "addyosmani",
+      "repo": "agent-skills",
+      "slug": "code-review-and-quality",
+      "skill_folder_url": {
+        "value": "https://github.com/addyosmani/agent-skills/tree/main/skills/code-review-and-quality",
+        "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/28f435ea69a78531ec00779c7f3b78c64ce95896/skills/code-review-and-quality/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:02Z"
+      },
+      "author_claim": {
+        "value": "\"Conducts multi-axis code review. Use before merging any change. Use when reviewing code written by yourself, another agent, or a human. Use when you need to assess code quality across multiple dimensions before it enters the main branch. Use when asked to review a diff or a pull request, even when the diff is pasted inline.\"",
+        "url": "https://raw.githubusercontent.com/addyosmani/agent-skills/28f435ea69a78531ec00779c7f3b78c64ce95896/skills/code-review-and-quality/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:02Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 77968,
+          "url": "https://www.skills.sh/addyosmani/agent-skills/code-review-and-quality",
+          "fetched_at": "2026-11-01T14:39:01Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill provides a comprehensive set of instructions and checklists for conducting high-quality code reviews across five dimensions: correctness, readability, architecture, security, and performance. It establishes rigorous standards for code quality, dependency management, and verification processes. No malicious patterns, executable code, or technical vulnerabilities were detected within the skill's instructions.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/addyosmani/agent-skills/code-review-and-quality",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "warn",
+              "summary": "Risk: MEDIUM · 1 issue",
+              "risk_level": "MEDIUM"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/addyosmani/agent-skills/code-review-and-quality",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/addyosmani/agent-skills/code-review-and-quality",
+            "fetched_at": "2026-11-01T14:39:01Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 112434,
+          "url": "https://api.github.com/repos/addyosmani/agent-skills",
+          "fetched_at": "2026-11-01T14:39:01Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-09-26T22:56:34Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/28f435ea69a78531ec00779c7f3b78c64ce95896",
+          "fetched_at": "2026-11-01T14:39:01Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": "-13 pp directional",
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/code-review-and-quality",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 91,
+            "model": null,
+            "url": "https://skillzbench.com/skills/code-review-and-quality",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "9.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/code-review-and-quality",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": "with_vs_without_mean",
+            "value": {
+              "with_skill": 0.566,
+              "without_skill": 0.547,
+              "verdict": "Too few answers to tell"
+            },
+            "model": "claude-haiku-4-5-20251001",
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:02Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched addyosmani/code-review-and-quality"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:02Z",
+            "reason": "no Edge eval-data record matched addyosmani/agent-skills skills/code-review-and-quality"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "77%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/addyosmani/agent-skills/code-review-and-quality",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched code-review-and-quality"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "anthropics/skills/webapp-testing",
+      "job": "code-review-testing-debugging",
+      "owner": "anthropics",
+      "repo": "skills",
+      "slug": "webapp-testing",
+      "skill_folder_url": {
+        "value": "https://github.com/anthropics/skills/tree/main/skills/webapp-testing",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/webapp-testing/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:02Z"
+      },
+      "author_claim": {
+        "value": "\"Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.\"",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/b9e19e6f44773509fbdd7001d77ff41a49a486c1/skills/webapp-testing/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:02Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 194579,
+          "url": "https://www.skills.sh/anthropics/skills/webapp-testing",
+          "fetched_at": "2026-11-01T14:39:02Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill includes some security considerations such as command execution capabilities and interaction with external web content. While these warrant review, they are used within the skill's intended functionality for local web application testing and server management. See detailed analysis for context.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "warn",
+              "summary": "Risk: MEDIUM · 1 issue",
+              "risk_level": "MEDIUM"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          },
+          "socket": {
+            "value": {
+              "status": "warn",
+              "summary": "1 alert: gptAnomaly"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 186150,
+          "url": "https://api.github.com/repos/anthropics/skills",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-04-20T21:38:16Z",
+          "url": "https://github.com/anthropics/skills/commit/b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+          "fetched_at": "2026-11-01T14:39:02Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 75,
+            "model": null,
+            "url": "https://skillzbench.com/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "7.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for anthropics/skills/webapp-testing"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:02Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched anthropics/webapp-testing"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:02Z",
+            "reason": "no Edge eval-data record matched anthropics/skills skills/webapp-testing"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "78%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          },
+          {
+            "source": "Tessl",
+            "metric": "impact",
+            "value": {
+              "percent": "100%",
+              "multiplier": "2.17x"
+            },
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/webapp-testing",
+            "fetched_at": "2026-11-01T14:39:02Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched webapp-testing"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "anthropics/skills/pptx",
+      "job": "docs-slides-writing",
+      "owner": "anthropics",
+      "repo": "skills",
+      "slug": "pptx",
+      "skill_folder_url": {
+        "value": "https://github.com/anthropics/skills/tree/main/skills/pptx",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/fa0fa64bdc967915dc8399e803be67759e1e62b8/skills/pptx/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:03Z"
+      },
+      "author_claim": {
+        "value": "\"Use this skill any time a .pptx or .potx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx or .potx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates (.potx), layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx or .potx filename, regardless of what they plan to do with the content afterward. If a .pptx or .potx file needs to be opened, created, or touched, use this skill.\"",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/fa0fa64bdc967915dc8399e803be67759e1e62b8/skills/pptx/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:03Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 246456,
+          "url": "https://www.skills.sh/anthropics/skills/pptx",
+          "fetched_at": "2026-11-01T14:39:02Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill provides a robust set of tools for processing and generating PowerPoint presentations, including features for slide duplication, thumbnail creation, and XML validation. It includes advanced technical mechanisms for maintaining compatibility in sandboxed environments, such as runtime compilation of a compatibility shim and the use of process injection. While these techniques are used for their intended functional purposes, they represent powerful capabilities that warrant review in a security context.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          },
+          "socket": {
+            "value": {
+              "status": "warn",
+              "summary": "1 alert: gptAnomaly"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 186150,
+          "url": "https://api.github.com/repos/anthropics/skills",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-07-17T02:47:37Z",
+          "url": "https://github.com/anthropics/skills/commit/fa0fa64bdc967915dc8399e803be67759e1e62b8",
+          "fetched_at": "2026-11-01T14:39:03Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 79,
+            "model": null,
+            "url": "https://skillzbench.com/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "9.0/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for anthropics/skills/pptx"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": "overall_score",
+            "value": 7.3,
+            "model": "Claude Sonnet 5",
+            "url": "https://happycapy.ai/skill-arena/slides",
+            "fetched_at": "2026-11-01T14:38:45Z"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": "mean_overall_judge_score",
+            "value": {
+              "task": "Build a board deck from conflicting notes",
+              "with_skill": 71.2,
+              "without_skill": 62.8,
+              "protocol": "Installed skill · 2 pairs",
+              "scale": "score / 100"
+            },
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/#anthropics-pptx",
+            "fetched_at": "2026-11-01T14:38:47Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "mean_overall_judge_score",
+            "value": {
+              "task": "Restyle a presentation to a brand template",
+              "with_skill": 80.8,
+              "without_skill": 76.2,
+              "protocol": "Installed skill · 2 pairs",
+              "scale": "score / 100"
+            },
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/#anthropics-pptx",
+            "fetched_at": "2026-11-01T14:38:47Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "mean_overall_judge_score",
+            "value": {
+              "task": "Build a steering committee savings deck",
+              "with_skill": 46.8,
+              "without_skill": 64.2,
+              "protocol": "Installed skill · 2 pairs",
+              "scale": "score / 100"
+            },
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/#anthropics-pptx",
+            "fetched_at": "2026-11-01T14:38:47Z"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "90%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          },
+          {
+            "source": "Tessl",
+            "metric": "impact",
+            "value": {
+              "percent": "83%",
+              "multiplier": "1.53x"
+            },
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/pptx",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": "avg_score",
+            "value": {
+              "avg_score": 4.3,
+              "n_results": 10,
+              "task": "ppt-generation",
+              "short": "anthropics-pptx"
+            },
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "hugohe3/ppt-master/ppt-master",
+      "job": "docs-slides-writing",
+      "owner": "hugohe3",
+      "repo": "ppt-master",
+      "slug": "ppt-master",
+      "skill_folder_url": {
+        "value": "https://github.com/hugohe3/ppt-master/tree/main/skills/ppt-master",
+        "url": "https://raw.githubusercontent.com/hugohe3/ppt-master/5e8856be0da8e6bc85c4aa28acc614478f7b7137/skills/ppt-master/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:03Z"
+      },
+      "author_claim": {
+        "value": "\"AI-driven presentation workflow for generating editable PPTX decks and slides, reconstructing page visuals, creating reusable Brand/Style/Layout/Deck workspaces, filling native PPTX templates, and enhancing finished PPTX files. Use when the user asks to create, generate, reconstruct, regenerate, beautify, redesign, template, fill, or enhance a presentation, PPT, PPTX, slide deck, or courseware — including adding narration or animation to one — requests a presentation-authored narrated/self-running video, or mentions ppt-master.\"",
+        "url": "https://raw.githubusercontent.com/hugohe3/ppt-master/5e8856be0da8e6bc85c4aa28acc614478f7b7137/skills/ppt-master/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:03Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 21009,
+          "url": "https://www.skills.sh/hugohe3/ppt-master/ppt-master",
+          "fetched_at": "2026-11-01T14:39:03Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The skill provides a comprehensive workflow for generating and editing PowerPoint presentations. Its primary security risk is indirect prompt injection, as it ingests untrusted documents from various sources and processes their content using an AI agent. The skill includes built-in integrity checks and uses standard libraries for its operations, with network and command execution scoped to its intended purpose.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/hugohe3/ppt-master/ppt-master",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/hugohe3/ppt-master/ppt-master",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/hugohe3/ppt-master/ppt-master",
+            "fetched_at": "2026-11-01T14:39:03Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 72006,
+          "url": "https://api.github.com/repos/hugohe3/ppt-master",
+          "fetched_at": "2026-11-01T14:39:03Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-30T06:05:30Z",
+          "url": "https://github.com/hugohe3/ppt-master/commit/5e8856be0da8e6bc85c4aa28acc614478f7b7137",
+          "fetched_at": "2026-11-01T14:39:03Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://skillzbench.com/skills/ppt-master",
+            "fetched_at": "2026-11-01T14:39:03Z",
+            "reason": "HTTP 404 from https://skillzbench.com/skills/ppt-master"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for hugohe3/ppt-master/ppt-master"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:04Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched hugohe3/ppt-master"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:03Z",
+            "reason": "no Edge eval-data record matched hugohe3/ppt-master skills/ppt-master"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/hugohe3/ppt-master/ppt-master",
+            "fetched_at": "2026-11-01T14:39:03Z",
+            "reason": "registry page did not publish a Quality or Impact figure"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "skills-detail.json has short ppt-master, but its description does not match this skill's SKILL.md description, so the score was not used"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "popular_but_unmeasured"
+    },
+    {
+      "id": "zarazhangrui/frontend-slides/frontend-slides",
+      "job": "docs-slides-writing",
+      "owner": "zarazhangrui",
+      "repo": "frontend-slides",
+      "slug": "frontend-slides",
+      "skill_folder_url": {
+        "value": "https://github.com/zarazhangrui/frontend-slides",
+        "url": "https://raw.githubusercontent.com/zarazhangrui/frontend-slides/9906a34d640d2111f724544cbc50f7f130569ae1/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:04Z"
+      },
+      "author_claim": {
+        "value": "\"Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.\"",
+        "url": "https://raw.githubusercontent.com/zarazhangrui/frontend-slides/9906a34d640d2111f724544cbc50f7f130569ae1/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:04Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 1136,
+          "url": "https://www.skills.sh/zarazhangrui/frontend-slides/frontend-slides",
+          "fetched_at": "2026-11-01T14:39:04Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The Frontend Slides skill is a comprehensive tool for creating and sharing HTML presentations. It includes automation scripts for PowerPoint conversion, PDF export, and web deployment via Vercel. A thorough security analysis of the provided code and instructions revealed no evidence of malicious behavior, unauthorized data exfiltration, or prompt injection attempts. All external dependencies and network operations are associated with well-known, reputable services such as Vercel, Microsoft (Playwright), and Google Fonts.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/zarazhangrui/frontend-slides/frontend-slides",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "warn",
+              "summary": "Risk: MEDIUM · 1 issue",
+              "risk_level": "MEDIUM"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/zarazhangrui/frontend-slides/frontend-slides",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/zarazhangrui/frontend-slides/frontend-slides",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 31682,
+          "url": "https://api.github.com/repos/zarazhangrui/frontend-slides",
+          "fetched_at": "2026-11-01T14:39:04Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-06-23T20:08:18Z",
+          "url": "https://github.com/zarazhangrui/frontend-slides/commit/9906a34d640d2111f724544cbc50f7f130569ae1",
+          "fetched_at": "2026-11-01T14:39:04Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://skillzbench.com/skills/frontend-slides",
+            "fetched_at": "2026-11-01T14:39:04Z",
+            "reason": "page byline is affaan-m/ECC, which does not match zarazhangrui/frontend-slides"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for zarazhangrui/frontend-slides/frontend-slides"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:04Z",
+            "reason": "slug frontend-slides is on a Happycapy leaderboard attributed to happycapy, which does not match zarazhangrui"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": "wins / ties / losses",
+            "value": "2 / 1 / 0",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/frontend-slides/index.json",
+            "fetched_at": "2026-11-01T14:38:49Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "skill outputs passed",
+            "value": "3 of 3",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/frontend-slides/index.json",
+            "fetched_at": "2026-11-01T14:38:49Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "baseline outputs passed",
+            "value": "1 of 3",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/frontend-slides/index.json",
+            "fetched_at": "2026-11-01T14:38:49Z"
+          },
+          {
+            "source": "Edge",
+            "metric": "recorded agent runs",
+            "value": "6",
+            "model": "OpenAI GPT-5.6 Sol",
+            "url": "https://getedge.cc/eval-data/frontend-slides/index.json",
+            "fetched_at": "2026-11-01T14:38:49Z"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "90%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/zarazhangrui/frontend-slides/frontend-slides",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          },
+          {
+            "source": "Tessl",
+            "metric": "impact",
+            "value": {
+              "percent": "65%",
+              "multiplier": "1.35x"
+            },
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/zarazhangrui/frontend-slides/frontend-slides",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": "avg_score",
+            "value": {
+              "avg_score": 4.05,
+              "n_results": 10,
+              "task": "ppt-generation",
+              "short": "frontend-slides"
+            },
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "anthropics/skills/docx",
+      "job": "docs-slides-writing",
+      "owner": "anthropics",
+      "repo": "skills",
+      "slug": "docx",
+      "skill_folder_url": {
+        "value": "https://github.com/anthropics/skills/tree/main/skills/docx",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/fa0fa64bdc967915dc8399e803be67759e1e62b8/skills/docx/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:04Z"
+      },
+      "author_claim": {
+        "value": "\"Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files) or Word templates (.dotx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', '.dotx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx or .dotx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.\"",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/fa0fa64bdc967915dc8399e803be67759e1e62b8/skills/docx/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:04Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 210872,
+          "url": "https://www.skills.sh/anthropics/skills/docx",
+          "fetched_at": "2026-11-01T14:39:04Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "This skill provides a comprehensive suite of tools for Microsoft Word document manipulation, including creation, editing, and validation. It includes several technical security considerations such as runtime compilation and command execution, which are used to facilitate document processing in restricted environments. These patterns are consistent with the skill's purpose and are implemented with appropriate safeguards.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/docx",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/docx",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          },
+          "socket": {
+            "value": {
+              "status": "warn",
+              "summary": "2 alerts: gptSecurity, gptAnomaly"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/anthropics/skills/docx",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 186150,
+          "url": "https://api.github.com/repos/anthropics/skills",
+          "fetched_at": "2026-11-01T14:38:54Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-07-17T02:47:37Z",
+          "url": "https://github.com/anthropics/skills/commit/fa0fa64bdc967915dc8399e803be67759e1e62b8",
+          "fetched_at": "2026-11-01T14:39:04Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": "pass_rate_lift_pp",
+            "value": null,
+            "model": "GLM-5.3-flash",
+            "url": "https://skillzbench.com/skills/docx",
+            "fetched_at": "2026-11-01T14:39:04Z",
+            "reason": "SkillzBench page says this skill is not yet benchmarked"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "trust_score",
+            "value": 78,
+            "model": null,
+            "url": "https://skillzbench.com/skills/docx",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          },
+          {
+            "source": "SkillzBench",
+            "metric": "quality_judgment_overall",
+            "value": "8.5/10",
+            "model": null,
+            "url": "https://skillzbench.com/skills/docx",
+            "fetched_at": "2026-11-01T14:39:04Z"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for anthropics/skills/docx"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://happycapy.ai/skill-arena",
+            "fetched_at": "2026-11-01T14:39:05Z",
+            "reason": "no Happycapy skill-arena leaderboard row matched anthropics/docx"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:05Z",
+            "reason": "no Edge eval-data record matched anthropics/skills skills/docx"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "97%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/docx",
+            "fetched_at": "2026-11-01T14:39:05Z"
+          },
+          {
+            "source": "Tessl",
+            "metric": "impact",
+            "value": {
+              "percent": "93%",
+              "multiplier": "1.40x"
+            },
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/anthropics/skills/docx",
+            "fetched_at": "2026-11-01T14:39:05Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched docx"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    },
+    {
+      "id": "coreyhaines31/marketingskills/copywriting",
+      "job": "docs-slides-writing",
+      "owner": "coreyhaines31",
+      "repo": "marketingskills",
+      "slug": "copywriting",
+      "skill_folder_url": {
+        "value": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting",
+        "url": "https://raw.githubusercontent.com/coreyhaines31/marketingskills/15b38b5388dfdd17f4ab424e986ccd32c24d5b22/skills/copywriting/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:05Z"
+      },
+      "author_claim": {
+        "value": "\"When the user wants to write, rewrite, or improve marketing copy for any page, including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy,\" \"value proposition,\" \"tagline,\" \"hero section copy,\" \"this copy is weak,\" \"this sounds like AI,\" \"AI slop,\" \"make it sound human,\" or \"help me describe my product.\" Drafts never use AI tells like \"it's not X, it's Y\" reveals, \"no X, no Y, no Z\" lists, or sentences that trail into extra comma clauses. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers. Claims must be supportable, and a declined claim names the evidence that would unlock it. Diagnoses the input first (blank brief, real voice, or point edit) and changes only what it calls for.\"",
+        "url": "https://raw.githubusercontent.com/coreyhaines31/marketingskills/15b38b5388dfdd17f4ab424e986ccd32c24d5b22/skills/copywriting/SKILL.md",
+        "fetched_at": "2026-11-01T14:39:05Z"
+      },
+      "skills_sh": {
+        "installs": {
+          "value": 242129,
+          "url": "https://www.skills.sh/coreyhaines31/marketingskills/copywriting",
+          "fetched_at": "2026-11-01T14:39:05Z"
+        },
+        "audits": {
+          "gen": {
+            "value": {
+              "status": "pass",
+              "summary": "The analyzed skill is a comprehensive copywriting toolkit designed to help AI agents write marketing copy. No malicious patterns, exfiltration attempts, or security vulnerabilities were identified.",
+              "risk_level": "SAFE"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/coreyhaines31/marketingskills/copywriting",
+            "fetched_at": "2026-11-01T14:39:05Z"
+          },
+          "snyk": {
+            "value": {
+              "status": "pass",
+              "summary": "Risk: LOW · No issues",
+              "risk_level": "LOW"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/coreyhaines31/marketingskills/copywriting",
+            "fetched_at": "2026-11-01T14:39:05Z"
+          },
+          "socket": {
+            "value": {
+              "status": "pass",
+              "summary": "No alerts"
+            },
+            "url": "https://skills.sh/api/v1/skills/audit/coreyhaines31/marketingskills/copywriting",
+            "fetched_at": "2026-11-01T14:39:05Z"
+          }
+        }
+      },
+      "github": {
+        "stars": {
+          "value": 57776,
+          "url": "https://api.github.com/repos/coreyhaines31/marketingskills",
+          "fetched_at": "2026-11-01T14:39:05Z"
+        },
+        "skill_folder_last_commit": {
+          "value": "2026-10-27T18:27:30Z",
+          "url": "https://github.com/coreyhaines31/marketingskills/commit/15b38b5388dfdd17f4ab424e986ccd32c24d5b22",
+          "fetched_at": "2026-11-01T14:39:05Z"
+        }
+      },
+      "third_party": {
+        "skillzbench": [
+          {
+            "source": "SkillzBench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://skillzbench.com/skills/copywriting",
+            "fetched_at": "2026-11-01T14:39:05Z",
+            "reason": "SkillzBench attributes slug copywriting to 1st-party AIQ Labs seed library, which is not coreyhaines31/marketingskills"
+          }
+        ],
+        "driftproof": [
+          {
+            "source": "Driftproof",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://driftproofhq.com/skills/",
+            "fetched_at": "2026-11-01T14:38:36Z",
+            "reason": "no per-skill Driftproof entry for coreyhaines31/marketingskills/copywriting"
+          }
+        ],
+        "happycapy": [
+          {
+            "source": "Happycapy",
+            "metric": "overall_score",
+            "value": 9.0,
+            "model": "Claude Sonnet 5",
+            "url": "https://happycapy.ai/skill-arena/docs",
+            "fetched_at": "2026-11-01T14:38:38Z"
+          }
+        ],
+        "edge": [
+          {
+            "source": "Edge",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://getedge.cc/benchmarks/evaluations/",
+            "fetched_at": "2026-11-01T14:39:05Z",
+            "reason": "no Edge eval-data record matched coreyhaines31/marketingskills skills/copywriting"
+          }
+        ],
+        "tessl": [
+          {
+            "source": "Tessl",
+            "metric": "quality",
+            "value": "97%",
+            "model": null,
+            "url": "https://tessl.io/registry/skills/github/coreyhaines31/marketingskills/copywriting",
+            "fetched_at": "2026-11-01T14:39:05Z"
+          }
+        ],
+        "openskilleval": [
+          {
+            "source": "OpenSkillEval",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://yingjiahao14.github.io/OpenSkillEval-Web/data/skills-detail.json",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "no skills-detail.json entry matched copywriting"
+          }
+        ],
+        "swe_skills_bench": [
+          {
+            "source": "SWE-Skills-Bench",
+            "metric": null,
+            "value": null,
+            "model": null,
+            "url": "https://arxiv.org/html/2603.15401v1",
+            "fetched_at": "2026-11-01T14:38:53Z",
+            "reason": "not listed among the skill names in Table 2 of the public SWE-Skills-Bench paper GitHub repo HTTP 404."
+          }
+        ]
+      },
+      "evidence_label": "measured_by_third_party"
+    }
+  ]
+}
