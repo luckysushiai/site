@@ -59,6 +59,46 @@ for task_dir in tasks/*/; do
 done
 
 echo
+if docker info >/dev/null 2>&1 && command -v bench >/dev/null 2>&1; then
+  docker_score() {
+    local label="$1"
+    local tasks="$2"
+    local expect="$3"
+    local jobs
+    jobs="$(mktemp -d)"
+    echo "== docker $label =="
+    echo "bench eval run --tasks-dir $tasks --agent oracle --sandbox docker --usage-tracking off --jobs-dir $jobs --concurrency 2"
+    local out code plain
+    out="$(bench eval run --tasks-dir "$tasks" --agent oracle --sandbox docker --usage-tracking off --jobs-dir "$jobs" --concurrency 2 2>&1)"
+    code=$?
+    printf '%s\n' "$out"
+    plain="$(printf '%s\n' "$out" | sed 's/\x1b\[[0-9;]*m//g')"
+    if printf '%s\n' "$plain" | grep -q "Score: ${expect}"; then
+      echo "docker $label: pass"
+    else
+      echo "docker $label: fail (bench exit $code)"
+      fail=1
+    fi
+  }
+
+  docker_score oracle "$BENCH/tasks" "10/10"
+  nop_root="$(mktemp -d)"
+  cp -a "$BENCH/tasks/." "$nop_root/"
+  for solve in "$nop_root"/*/oracle/solve.sh; do
+    cat > "$solve" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+exit 0
+EOF
+    chmod +x "$solve"
+  done
+  docker_score nop "$nop_root" "0/10"
+else
+  echo "== docker =="
+  echo "docker: skipped (daemon or bench not available)"
+fi
+
+echo
 echo "== dry-run record =="
 if python3 runs/validate.py runs/dry-run-2026-11-01/run.json --expect-dry-run; then
   echo "dry-run: pass"

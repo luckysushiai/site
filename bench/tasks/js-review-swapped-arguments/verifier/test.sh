@@ -19,7 +19,7 @@ write_reward() {
   fi
 }
 
-if python3 "$HERE/check.py"; then
+if node "$HERE/check.js"; then
   write_reward 1
   exit 0
 fi
