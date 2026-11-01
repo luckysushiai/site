@@ -669,7 +669,7 @@
           }
         ]
       },
-      "evidence_label": "measured_by_third_party"
+      "evidence_label": "popular_but_unmeasured"
     },
     {
       "id": "emilkowalski/skills/emil-design-eng",
@@ -1613,7 +1613,7 @@
           }
         ]
       },
-      "evidence_label": "measured_by_third_party"
+      "evidence_label": "popular_but_unmeasured"
     },
     {
       "id": "obra/superpowers/test-driven-development",
@@ -1930,7 +1930,7 @@
           }
         ]
       },
-      "evidence_label": "measured_by_third_party"
+      "evidence_label": "popular_but_unmeasured"
     },
     {
       "id": "obra/superpowers/requesting-code-review",

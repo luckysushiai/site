@@ -15,6 +15,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+from collect import evidence_label, is_effect_measurement
+
 ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = ROOT / "data" / "skills" / "skills.json"
 SCHEMA_PATH = ROOT / "data" / "skills" / "schema.json"
@@ -89,19 +91,31 @@ def main() -> None:
             errors.append(f"{skill['slug']} job is {skill['job']}, seed says {expected['job']}")
         if skill.get("evidence_label") == "measured_by_us":
             errors.append(f"{skill['slug']} uses reserved evidence label measured_by_us")
-        measured = False
-        for rows in (skill.get("third_party") or {}).values():
-            for row in rows:
-                if row.get("value") is not None:
-                    measured = True
+        third_party = skill.get("third_party") or {}
+        has_effect = any(
+            is_effect_measurement(source_key, row)
+            for source_key, rows in third_party.items()
+            for row in rows
+        )
         label = skill.get("evidence_label")
-        if measured and label != "measured_by_third_party":
-            errors.append(f"{skill['slug']} has a third-party value but evidence_label={label}")
-        if not measured and label != "popular_but_unmeasured":
-            errors.append(f"{skill['slug']} has no third-party value but evidence_label={label}")
+        if label == "measured_by_third_party" and not has_effect:
+            errors.append(
+                f"{skill['slug']} is measured_by_third_party but has no non-null effect metric"
+            )
+        if label != evidence_label(third_party):
+            errors.append(
+                f"{skill['slug']} evidence_label={label}, effect rule says {evidence_label(third_party)}"
+            )
         nulls = walk(skill, skill.get("id", skill.get("slug", "?")), errors)
         print(f"{skill.get('id')} null_fields={nulls}")
 
+    labels = {}
+    for skill in skills:
+        labels[skill.get("evidence_label")] = labels.get(skill.get("evidence_label"), 0) + 1
+    print(
+        "evidence_labels "
+        + " ".join(f"{name}={labels[name]}" for name in sorted(labels))
+    )
     if errors:
         for err in errors:
             print(f"check: {err}", file=sys.stderr)

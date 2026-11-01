@@ -1086,10 +1086,35 @@ def swe_for_skill(slug: str, names: set[str], url: str, fetched: str, error: str
     return missing("swe_skills_bench", url, fetched, reason)
 
 
+# Effect or outcome metrics. This is the only list that may set evidence_label.
+# SkillzBench publishes that headline as pass-rate lift (pp) or quality lift (pts).
+# Tessl quality, SkillzBench trust_score, and quality_judgment_overall are review
+# or hygiene signals: they stay in the file and never set the label.
+# None means any non-null metric from that source is an effect or outcome.
+EFFECT_METRICS = {
+    "skillzbench": frozenset({"pass_rate_lift_pp", "quality_lift_pts"}),
+    "tessl": frozenset({"impact"}),
+    "driftproof": frozenset({"with_vs_without_mean"}),
+    "happycapy": frozenset({"overall_score"}),
+    "edge": None,
+    "openskilleval": frozenset({"avg_score"}),
+    "swe_skills_bench": None,
+}
+
+
+def is_effect_measurement(source_key: str, row: dict) -> bool:
+    if not isinstance(row, dict) or row.get("value") is None:
+        return False
+    allowed = EFFECT_METRICS.get(source_key)
+    if allowed is None:
+        return source_key in EFFECT_METRICS
+    return row.get("metric") in allowed
+
+
 def evidence_label(third_party: dict) -> str:
-    for rows in third_party.values():
+    for source_key, rows in third_party.items():
         for row in rows:
-            if row.get("value") is not None:
+            if is_effect_measurement(source_key, row):
                 return "measured_by_third_party"
     return "popular_but_unmeasured"
 
