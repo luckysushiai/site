@@ -23,7 +23,8 @@ img{max-width:100%;height:auto}
 a{color:var(--orange-text)}
 a:hover{color:var(--brindle)}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:18px;padding-bottom:18px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:18px;padding-bottom:18px}
+nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end}
 .brand{font-family:var(--serif);font-weight:700;text-decoration:none;color:var(--ink);font-size:22px;letter-spacing:-.01em}
 nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:500}
 nav a:hover{color:var(--orange-text)}
@@ -91,3 +92,29 @@ h2::after{content:"";display:block;width:44px;height:3px;border-radius:2px;backg
   .brand{font-size:20px}
   .lede{font-size:17px}
 }
+
+/* Skill pages. Labels share one color. */
+.sheet{padding-top:12px;padding-bottom:12px}
+.sheet h1{margin:.15em 0 .4em}
+.sheet h2{margin-top:36px}
+.section-nav{display:flex;flex-wrap:wrap;gap:2px 16px;margin:0 0 8px;padding:0}
+.section-nav a{display:inline-block;padding:12px 2px;font-weight:700;text-decoration:none}
+.pending{color:var(--brindle);font-weight:700;margin-top:0}
+.skill-index{list-style:none;padding:0;margin:8px 0 0}
+.skill-index li{margin:0;border-bottom:1px solid var(--line)}
+.skill-index a{font-weight:700;display:inline-block;padding:12px 8px 12px 0}
+.skill-card{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--tan);border-radius:14px;padding:16px 18px;margin:14px 0}
+.skill-card h3{margin:.1em 0 .25em;font-size:22px}
+.skill-card h3 a{display:inline-block;padding:6px 0}
+.claim-and-results{display:grid;gap:4px 28px}
+@media (min-width:800px){
+  .claim-and-results{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+}
+.claim-and-results h2{margin-top:28px}
+blockquote.verbatim{margin:12px 0 8px;padding:2px 0 2px 16px;border-left:4px solid var(--tan);color:var(--ink)}
+blockquote.verbatim p{margin:.4em 0}
+.measure,.fact{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:14px;padding:14px 16px;margin:12px 0}
+.measure h3,.fact h3{margin:0 0 .2em;font-size:20px}
+.measure p,.fact p,.skill-card p{margin:.35em 0}
+.sheet ul{padding-left:1.15em}
+.sheet li{margin:.35em 0}

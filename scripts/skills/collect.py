@@ -1086,19 +1086,36 @@ def swe_for_skill(slug: str, names: set[str], url: str, fetched: str, error: str
     return missing("swe_skills_bench", url, fetched, reason)
 
 
-# Effect or outcome metrics. This is the only list that may set evidence_label.
-# SkillzBench publishes that headline as pass-rate lift (pp) or quality lift (pts).
-# Tessl quality, SkillzBench trust_score, and quality_judgment_overall are review
-# or hygiene signals: they stay in the file and never set the label.
-# None means any non-null metric from that source is an effect or outcome.
+# Effect or outcome metrics. Only a non-null value whose metric is in this
+# allowlist may set evidence_label. Every source has an explicit frozenset.
+# There is no wildcard: a metric that is not listed does not count.
+# SkillzBench pass-rate lift and quality lift are the headlines that count.
+# Tessl quality, SkillzBench trust_score, and quality_judgment_overall are
+# review or hygiene signals. They stay in the file and never set the label.
+# Edge "recorded agent runs", "baseline outputs passed", and "skill outputs
+# passed" are sample-size or arm counts, not a lift or a task score.
+# SWE-Skills-Bench "listed_in_table_2" only records that a name appears in a
+# table. The collector does not currently store a SWE effect metric.
 EFFECT_METRICS = {
     "skillzbench": frozenset({"pass_rate_lift_pp", "quality_lift_pts"}),
     "tessl": frozenset({"impact"}),
     "driftproof": frozenset({"with_vs_without_mean"}),
     "happycapy": frozenset({"overall_score"}),
-    "edge": None,
+    "edge": frozenset({"mean_overall_judge_score", "wins / ties / losses"}),
     "openskilleval": frozenset({"avg_score"}),
-    "swe_skills_bench": None,
+    "swe_skills_bench": frozenset(),
+}
+
+# Metrics the collector knows about that must stay off the allowlist above.
+EXCLUDED_METRICS = {
+    "skillzbench": frozenset({"trust_score", "quality_judgment_overall"}),
+    "tessl": frozenset({"quality"}),
+    "edge": frozenset({
+        "baseline outputs passed",
+        "recorded agent runs",
+        "skill outputs passed",
+    }),
+    "swe_skills_bench": frozenset({"listed_in_table_2"}),
 }
 
 
@@ -1106,8 +1123,8 @@ def is_effect_measurement(source_key: str, row: dict) -> bool:
     if not isinstance(row, dict) or row.get("value") is None:
         return False
     allowed = EFFECT_METRICS.get(source_key)
-    if allowed is None:
-        return source_key in EFFECT_METRICS
+    if not isinstance(allowed, frozenset):
+        return False
     return row.get("metric") in allowed
 
 
