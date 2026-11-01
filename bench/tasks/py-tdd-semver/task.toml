@@ -1,0 +1,26 @@
+schema_version = "1.3"
+
+[metadata]
+name = "py-tdd-semver"
+job = "code-review-testing-debugging"
+category = "software-engineering"
+difficulty = "hard"
+summary = "Implement a small semver compare from the spec, including hidden precedence cases."
+tags = ["tdd", "python", "semver"]
+author_name = "luckysushi"
+
+[verifier]
+type = "test-script"
+timeout_sec = 60.0
+
+[agent]
+timeout_sec = 600.0
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 120.0
+os = "linux"
+cpus = 1
+memory_mb = 512
+storage_mb = 256
+gpus = 0
