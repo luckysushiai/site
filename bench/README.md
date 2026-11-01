@@ -52,7 +52,7 @@ Official request caps, from [rate limits](https://ai.google.dev/gemini-api/docs/
 Third-party RPM/RPD numbers below are unverified. They are not Google's published table. The two writeups do not even agree with each other.
 
 - [imisofts](https://imisofts.com/blog/gemini-api-free-tier-limits/), 2026-10-21, says the author read one free project in AI Studio that day. For Gemini 3.5 Flash-Lite and Gemini 3.1 Flash-Lite the page says 15 RPM, 250,000 TPM, and 500 RPD. For Gemini 2.5 Flash-Lite it says 10 RPM and 20 RPD. For Gemini 3.8, 3.6, 3, and 2.5 Flash it says 5 RPM and 20 RPD.
-- [scriptbyai](https://www.scriptbyai.com/gemini-api-free-tier-limits/), 2026-10-29, says its table comes from the AI Studio free-tier comparison. It lists Gemini 3.1 Flash-Lite at 10 RPM, 250,000 TPM, and 500 RPD, and Gemini 3.5 Flash-Lite at the same 10 RPM and 500 RPD. It lists Gemini 3.8 Flash and 3.6 Flash at 5 RPM and 20 RPD. It also says Gemini 2.5 API access is limited to developers who used it before.
+- [scriptbyai](https://www.scriptbyai.com/gemini-api-free-tier-limits/), 2026-10-19, says its table comes from the AI Studio free-tier comparison. It lists Gemini 3.1 Flash-Lite at 10 RPM, 250,000 TPM, and 500 RPD, and Gemini 3.5 Flash-Lite at the same 10 RPM and 500 RPD. It lists Gemini 3.8 Flash and 3.6 Flash at 5 RPM and 20 RPD. It also says Gemini 2.5 API access is limited to developers who used it before.
 - A Google AI Developers Forum thread says a free-tier Flash quota was cut from 250 RPD to 20 RPD: [forum thread](https://discuss.ai.google.dev/t/do-they-really-think-we-wouldnt-notice-a-92-free-tier-quota/111262). That post does not name `gemini-3.1-flash-lite`.
 
 ## Call count and proposed cuts
