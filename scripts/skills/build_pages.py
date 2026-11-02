@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate static /skills pages from data/skills/skills.json.
 
-Reads the M1 JSON file and writes site/skills/ plus sitemap entries.
+Reads the JSON file and writes site/skills/ plus sitemap entries.
 Does not fetch, does not call a model, and does not invent run records.
 A second run with the same inputs rewrites the same bytes.
 """
@@ -38,20 +38,51 @@ JOBS = (
 )
 JOB_TITLES = dict(JOBS)
 
-LABEL_TEXT = {
-    "measured_by_us": "Measured by us",
-    "measured_by_third_party": "Measured by a third party",
-    "popular_but_unmeasured": "Popular but unmeasured",
+# Display labels are finer than the stored evidence_label. A stored
+# "measured_by_third_party" value only means some effect metric was non-null.
+# The page label says whether that result is firm, or the source itself
+# called it directional or too small to tell. No scores are invented here.
+DISPLAY_LABELS = (
+    (
+        "measured_by_us",
+        "Measured by us",
+        "We have run this skill on our tasks and stored the trials. No skill has this label yet.",
+    ),
+    (
+        "third_party_result",
+        "Third-party result",
+        "Another project published a skill-level result, and it did not mark that result as directional or too small to tell.",
+    ),
+    (
+        "too_early",
+        "Too early to tell",
+        "Every skill-level result is marked directional, or the source says there are too few answers to tell.",
+    ),
+    (
+        "popular_but_unmeasured",
+        "Popular but unmeasured",
+        "Installs or stars are public, and no skill-level result is on file.",
+    ),
+)
+DISPLAY_TEXT = {key: text for key, text, _blurb in DISPLAY_LABELS}
+DISPLAY_BLURB = {key: blurb for key, _text, blurb in DISPLAY_LABELS}
+SCORES_LINE = "Our own scores are coming; for now we show published evidence."
+OSE_PAGE = "https://yingjiahao14.github.io/OpenSkillEval-Web/"
+AUDIT_PATHS = {
+    "gen": "agent-trust-hub",
+    "snyk": "snyk",
+    "socket": "socket",
 }
+WEAK_RE = re.compile(r"too few answers|directional", re.I)
 
 METRIC_LABELS = {
-    "pass_rate_lift_pp": "pass-rate lift (percentage points)",
-    "quality_lift_pts": "quality lift (points)",
+    "pass_rate_lift_pp": "pass rate change",
+    "quality_lift_pts": "quality change",
     "trust_score": "trust score",
-    "quality_judgment_overall": "quality judgment",
-    "with_vs_without_mean": "with-skill and without-skill mean",
+    "quality_judgment_overall": "quality rating",
+    "with_vs_without_mean": "with the skill and without it",
     "overall_score": "overall score",
-    "mean_overall_judge_score": "mean judge score on a task",
+    "mean_overall_judge_score": "judge score on a task",
     "wins / ties / losses": "wins, ties, and losses",
     "skill outputs passed": "skill outputs passed",
     "baseline outputs passed": "baseline outputs passed",
@@ -138,6 +169,66 @@ def fmt_value(value) -> str:
     return fmt_scalar(value)
 
 
+def measurement_fields(metric, value) -> dict:
+    """Split a stored result into a figure, a with/without pair, and a note.
+
+    Comparison results keep the two scores in their own fields. A single
+    published figure stays with the row title. Notes are the source's own
+    words, except the directional sentence, which is ours.
+    """
+    figure = None
+    with_skill = None
+    without_skill = None
+    title = None
+    source_notes: list[str] = []
+    our_notes: list[str] = []
+    if metric == "with_vs_without_mean" and isinstance(value, dict):
+        title = "Mean score"
+        with_skill = fmt_scalar(value.get("with_skill"))
+        without_skill = fmt_scalar(value.get("without_skill"))
+        if value.get("verdict"):
+            source_notes.append(str(value.get("verdict")))
+    elif metric == "mean_overall_judge_score" and isinstance(value, dict):
+        title = str(value.get("task") or "Judge score on a task")
+        with_skill = fmt_scalar(value.get("with_skill"))
+        without_skill = fmt_scalar(value.get("without_skill"))
+        if value.get("protocol"):
+            source_notes.append(str(value.get("protocol")))
+        if value.get("scale"):
+            source_notes.append(f"Scale: {value.get('scale')}")
+    elif metric == "impact" and isinstance(value, dict):
+        bits = []
+        if value.get("percent") is not None:
+            bits.append(str(value.get("percent")))
+        if value.get("multiplier"):
+            bits.append(str(value.get("multiplier")))
+        figure = ", ".join(bits) if bits else fmt_value(value)
+    elif metric == "avg_score" and isinstance(value, dict):
+        figure = fmt_scalar(value.get("avg_score"))
+        extra = []
+        if value.get("n_results") is not None:
+            extra.append(f"{fmt_scalar(value.get('n_results'))} results")
+        if value.get("task"):
+            extra.append(f"task {value.get('task')}")
+        if extra:
+            source_notes.append(", ".join(extra))
+    else:
+        raw = fmt_value(value)
+        if isinstance(value, str) and re.search(r"directional", value, re.I):
+            figure = re.sub(r"\s*directional\b", "", value, flags=re.I).strip()
+            our_notes.append("The source calls this directional.")
+        else:
+            figure = raw
+    return {
+        "title": title,
+        "figure": figure,
+        "with_skill": with_skill,
+        "without_skill": without_skill,
+        "source_notes": source_notes,
+        "our_notes": our_notes,
+    }
+
+
 def fmt_measurement_value(metric, value) -> str:
     if metric == "with_vs_without_mean" and isinstance(value, dict):
         parts = [
@@ -145,7 +236,7 @@ def fmt_measurement_value(metric, value) -> str:
             f"without skill {fmt_scalar(value.get('without_skill'))}",
         ]
         if value.get("verdict"):
-            parts.append(f"source verdict: {value.get('verdict')}")
+            parts.append(f"The source says: {value.get('verdict')}")
         return "; ".join(parts)
     if metric == "mean_overall_judge_score" and isinstance(value, dict):
         parts = []
@@ -206,11 +297,120 @@ def show_time(stamp: str) -> str:
     return stamp.replace("T", " ").replace("Z", " UTC")
 
 
+def effect_rows(skill: dict) -> list[tuple[str, dict]]:
+    rows = []
+    third = skill.get("third_party") or {}
+    for source_key in THIRD_PARTY_KEYS:
+        for row in third.get(source_key) or []:
+            if is_effect_measurement(source_key, row):
+                rows.append((source_key, row))
+    return rows
+
+
+def row_is_weak(row: dict) -> bool:
+    value = row.get("value")
+    if isinstance(value, dict):
+        blob = " ".join(str(part) for part in value.values())
+    elif value is None:
+        blob = ""
+    else:
+        blob = str(value)
+    return bool(WEAK_RE.search(blob))
+
+
+def display_label_key(skill: dict) -> str:
+    stored = skill.get("evidence_label")
+    if stored == "measured_by_us":
+        return "measured_by_us"
+    effects = effect_rows(skill)
+    if not effects:
+        return "popular_but_unmeasured"
+    if any(not row_is_weak(row) for _source_key, row in effects):
+        return "third_party_result"
+    return "too_early"
+
+
 def label_text(skill: dict) -> str:
-    label = skill.get("evidence_label")
-    if label not in LABEL_TEXT:
-        fail(f"{skill.get('id')} has an unknown evidence label {label}")
-    return LABEL_TEXT[label]
+    key = display_label_key(skill)
+    if key not in DISPLAY_TEXT:
+        fail(f"{skill.get('id')} has an unknown display label {key}")
+    return DISPLAY_TEXT[key]
+
+
+def label_blurb(skill: dict) -> str:
+    return DISPLAY_BLURB[display_label_key(skill)]
+
+
+def counts_cell(source_key: str, row: dict) -> str:
+    if not is_effect_measurement(source_key, row):
+        return "No"
+    if row_is_weak(row):
+        return "Early only"
+    return "Yes"
+
+
+def source_link(source_key: str, url: str, skill: dict) -> str:
+    href = readable_url(source_key, url, skill)
+    label = "OpenSkillEval" if source_key == "openskilleval" else None
+    return ext_link(href, label)
+
+
+def readable_url(source_key: str, url: str, skill: dict) -> str:
+    if source_key == "openskilleval" or (url and "skills-detail.json" in url):
+        return OSE_PAGE
+    if url and "api.github.com/repos/" in url:
+        return f"https://github.com/{skill['owner']}/{skill['repo']}"
+    return url
+
+
+def audit_page_url(skill: dict, key: str) -> str:
+    base = str(skill["skills_sh"]["installs"]["url"]).rstrip("/")
+    return f"{base}/security/{AUDIT_PATHS[key]}"
+
+
+def plain_reason(reason: str) -> str:
+    text = (reason or "").strip()
+    lowered = text.lower()
+    if "pack-level" in lowered or "plugin bundle" in lowered:
+        return "Only a pack-level result exists, and it is not copied onto this skill."
+    if "description does not match" in lowered:
+        return "A similar name is listed, but the description does not match this skill, so that score was not used."
+    if (
+        "does not match" in lowered
+        or "attributed to" in lowered
+        or "byline" in lowered
+        or "attributes slug" in lowered
+        or "which is not" in lowered
+    ):
+        return "A row exists under a different owner, so it was not used."
+    if "not yet benchmarked" in lowered:
+        return "This skill is not benchmarked there yet."
+    if "not listed among" in lowered or "table 2" in lowered:
+        return "Not listed in the paper table."
+    if "http 404" in lowered:
+        return "No public page for this skill."
+    if "did not publish" in lowered:
+        return "The registry page has no quality or impact figure."
+    if lowered.startswith("no ") or " no " in lowered:
+        return "No published row for this skill."
+    return text
+
+
+def fetched_phrase(stamps: list[str]) -> str:
+    unique = []
+    for stamp in stamps:
+        if stamp and stamp not in unique:
+            unique.append(stamp)
+    if not unique:
+        return ""
+    if len(unique) == 1:
+        stamp = unique[0]
+        return f'Fetched <time datetime="{esc(stamp)}">{esc(show_time(stamp))}</time>'
+    first, last = min(unique), max(unique)
+    return (
+        f'Fetched <time datetime="{esc(first)}">{esc(show_time(first))}</time>'
+        f' to <time datetime="{esc(last)}">{esc(show_time(last))}</time>'
+    )
 
 
 def skill_path(skill: dict) -> str:
@@ -247,54 +447,134 @@ def pack_level_guard(skill: dict) -> None:
                 fail(f"{skill['id']} {source_key} carries a pack-level value")
 
 
-def measurement_bits(source_key: str, row: dict) -> str:
-    source = row.get("source") or SOURCE_NAMES.get(source_key, source_key)
-    metric = row.get("metric")
-    metric_label = METRIC_LABELS.get(metric, metric or "result")
-    link = ext_link(row["url"])
-    when = fetched(row)
-    if row.get("value") is None:
-        reason = row.get("reason") or "no reason recorded"
-        extra = ""
-        lowered = reason.lower()
-        if "pack-level" in lowered or "plugin bundle" in lowered:
-            extra = "A pack-level result is not copied onto this skill. "
-        label = esc(source) if metric is None else f"{esc(source)}, {esc(metric_label)}"
-        return (
-            f"<strong>{label}</strong>: unavailable. {extra}"
-            f'<span class="verbatim">{esc(reason)}</span> {link} · {when}'
-        )
-    counted = (
-        "Counted as a third-party measurement."
-        if is_effect_measurement(source_key, row)
-        else "Shown as published. Excluded from the evidence label."
-    )
-    model = row.get("model")
-    if model:
-        model_bit = f' Model named by the source: <span class="verbatim">{esc(model)}</span>.'
-    else:
-        model_bit = " The source did not name a model."
-    value = fmt_measurement_value(metric, row.get("value"))
-    heading = esc(source) if metric is None else f"{esc(source)}, {esc(metric_label)}"
+def legend_html() -> str:
+    rows = []
+    for _key, name, blurb in DISPLAY_LABELS:
+        rows.append(f"      <div><dt>{esc(name)}</dt><dd>{esc(blurb)}</dd></div>")
+    return '    <dl class="legend">\n' + "\n".join(rows) + "\n    </dl>"
+
+
+def skill_row(skill: dict) -> str:
     return (
-        f"<strong>{heading}</strong>: <span class=\"verbatim\">{esc(value)}</span>."
-        f"{model_bit} {counted} {link} · {when}"
+        "<li>"
+        f'<a href="{esc(skill_path(skill))}">{esc(skill["slug"])}</a>'
+        f'<span class="note">{esc(skill["owner"])}</span>'
+        f'<span class="tag">{esc(label_text(skill))}</span>'
+        "</li>"
     )
 
 
-def measurement_items(skill: dict) -> str:
-    items = []
+def results_section(skill: dict) -> str:
     third = skill.get("third_party") or {}
+    groups = []
+    missing = []
     for source_key in THIRD_PARTY_KEYS:
-        for row in third.get(source_key) or []:
-            items.append(f"<li>{measurement_bits(source_key, row)}</li>")
-    return "\n".join(items)
+        rows = list(third.get(source_key) or [])
+        valued = [row for row in rows if row.get("value") is not None]
+        empty = [row for row in rows if row.get("value") is None]
+        if valued:
+            groups.append((source_key, valued))
+        missing.extend((source_key, row) for row in empty)
+    stamps = [row.get("fetched_at") or "" for _source_key, rows in groups for row in rows]
+    stamps.extend(row.get("fetched_at") or "" for _source_key, row in missing)
+    when = fetched_phrase(stamps)
+    parts = [
+        "    <section>",
+        "      <h2>Published results</h2>",
+        "      <p>These are the figures other projects published for this skill. A pack-level result is not copied onto the skill.</p>",
+    ]
+    if when:
+        parts.append(f'      <p class="note">{when}</p>')
+    if groups:
+        parts.append(
+            '      <p class="note">Shown as published. Excluded from the evidence label. '
+            "Counts toward the label is Yes when the row sets Third-party result, "
+            "Early only when the source marked it directional or said there are too few answers to tell, "
+            "and No when the figure is shown but does not count. "
+            "A blank model means the source did not name one.</p>"
+        )
+        parts.append('      <table class="results">')
+        parts.append(
+            "        <thead><tr>"
+            '<th scope="col">Result</th>'
+            '<th scope="col">With the skill</th>'
+            '<th scope="col">Without the skill</th>'
+            '<th scope="col">Note</th>'
+            '<th scope="col">Model</th>'
+            '<th scope="col">Counts toward the label</th>'
+            "</tr></thead>"
+        )
+        parts.append("        <tbody>")
+        for source_key, rows in groups:
+            source = rows[0].get("source") or SOURCE_NAMES.get(source_key, source_key)
+            urls = []
+            for row in rows:
+                url = readable_url(source_key, row.get("url") or "", skill)
+                if url and url not in urls:
+                    urls.append(url)
+            bits = [esc(source)]
+            if len(urls) == 1:
+                bits.append(source_link(source_key, rows[0].get("url") or "", skill))
+            parts.append(f'          <tr class="group"><th colspan="6">{" · ".join(bits)}</th></tr>')
+            for row in rows:
+                metric = row.get("metric")
+                fields = measurement_fields(metric, row.get("value"))
+                metric_label = fields["title"] or METRIC_LABELS.get(metric, metric or "Result")
+                name = esc(metric_label)
+                if fields["figure"]:
+                    name += f' <span class="verbatim">{esc(fields["figure"])}</span>'
+                if len(urls) != 1:
+                    name += " " + source_link(source_key, row.get("url") or "", skill)
+                parts.append(
+                    "          <tr>"
+                    f'<th scope="row">{name}</th>'
+                    f"{paired_cell(fields['with_skill'], 'With the skill')}"
+                    f"{paired_cell(fields['without_skill'], 'Without the skill')}"
+                    f"{note_cell(fields['source_notes'], fields['our_notes'])}"
+                    f"{paired_cell(row.get('model'), 'Model')}"
+                    f'<td data-label="Counts toward the label">{esc(counts_cell(source_key, row))}</td>'
+                    "</tr>"
+                )
+        parts.append("        </tbody>")
+        parts.append("      </table>")
+    if missing:
+        parts.append("      <h3>No skill-level result</h3>")
+        parts.append('      <ul class="missing">')
+        for source_key, row in missing:
+            source = row.get("source") or SOURCE_NAMES.get(source_key, source_key)
+            reason = plain_reason(row.get("reason") or "no reason recorded")
+            parts.append(
+                "        <li><strong>"
+                f"{esc(source)}</strong>. {esc(reason)} "
+                f"{source_link(source_key, row.get('url') or '', skill)}</li>"
+            )
+        parts.append("      </ul>")
+    parts.append("    </section>")
+    return "\n".join(parts)
+
+
+def paired_cell(value, label: str) -> str:
+    if value in (None, ""):
+        return f'<td class="is-empty" data-label="{esc(label)}"></td>'
+    return (
+        f'<td data-label="{esc(label)}"><span class="verbatim">{esc(value)}</span></td>'
+    )
+
+
+def note_cell(source_notes: list[str], our_notes: list[str]) -> str:
+    parts = []
+    if source_notes:
+        parts.append(f'<span class="verbatim">{esc(". ".join(source_notes))}</span>')
+    parts.extend(esc(note) for note in our_notes)
+    if not parts:
+        return '<td class="is-empty" data-label="Note"></td>'
+    return f'<td data-label="Note">{" ".join(parts)}</td>'
 
 
 def header() -> str:
-    return """  <header class="wrap top">
+    return """  <header class="wrap top wide">
     <a class="brand" href="/">Lucky Sushi</a>
-    <nav aria-label="Main"><a href="/#bench">Rally</a><a class="nav-extra" href="/#scout">Scout</a><a class="nav-extra" href="/#handler">Handler</a><a href="/#off-leash-lab">Lab</a><a href="/skills/">Skills</a><a href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe</a></nav>
+    <nav aria-label="Main"><a href="/skills/" aria-current="page">Skills</a><a href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe</a></nav>
   </header>"""
 
 
@@ -400,7 +680,7 @@ def render_page(title: str, description: str, canonical: str, body: str, jsonld:
 <body>
 {header()}
 <main>
-  <div class="wrap sheet">
+  <div class="wrap sheet wide">
 {body}
   </div>
 </main>
@@ -415,11 +695,12 @@ def unavailable_paragraph(row: dict) -> str:
     return f'<p>Unavailable. <span class="verbatim">{esc(reason)}</span></p>'
 
 
-def fact_block(title: str, row: dict, body_html: str) -> str:
+def fact_block(title: str, row: dict, body_html: str, link_url: str | None = None) -> str:
+    url = link_url or row["url"]
     return f"""    <section class="fact">
       <h3>{esc(title)}</h3>
 {body_html}
-      <p class="note">{ext_link(row["url"])} · {fetched(row)}</p>
+      <p class="note">{ext_link(url)}</p>
     </section>"""
 
 
@@ -462,38 +743,35 @@ def author_section(skill: dict) -> str:
         quote = unavailable_paragraph(claim).strip()
     else:
         quote = f"<p>{esc(claim_text(claim.get('value')))}</p>"
+    stamps = [claim.get("fetched_at") or ""]
+    folder = skill.get("skill_folder_url") or {}
+    if folder.get("fetched_at"):
+        stamps.append(folder["fetched_at"])
+    when = fetched_phrase(stamps)
     return f"""    <section>
       <h2>Author's claim</h2>
       <blockquote class="verbatim">
         {quote}
       </blockquote>
-      <p class="note">Quoted from the description field of this skill's SKILL.md. {ext_link(claim["url"], "SKILL.md")} · {fetched(claim)}</p>
+      <p class="note">Quoted from the description field of this skill's SKILL.md. {ext_link(claim["url"], "SKILL.md")}. {when}</p>
     </section>"""
 
 
 def render_index(data: dict, skills: list[dict]) -> tuple[str, str, str]:
     canonical = ORIGIN + "/skills/"
-    title = "Skills by job · Lucky Sushi"
+    title = "Agent skills, and the evidence behind them · Lucky Sushi"
     description = (
-        "Twenty agent skills grouped into three jobs. Within a job the list is alphabetical by slug. "
-        "Our own scoring is pending (M4)."
+        "A directory of twenty agent skills and the public evidence behind them. "
+        "Inside each job the list is alphabetical by slug, with one evidence label per skill."
     )
     sections = []
     entries = []
     for job, job_title in JOBS:
         entries.append((job_title, job_url(job)))
-        items = []
-        for skill in sorted_skills(skills, job):
-            items.append(
-                "<li>"
-                f'<a href="{esc(skill_path(skill))}">{esc(skill["slug"])}</a> '
-                f'<span class="tag">{esc(label_text(skill))}</span> '
-                f'<span class="note">{esc(skill["owner"])}</span>'
-                "</li>"
-            )
+        items = [skill_row(skill) for skill in sorted_skills(skills, job)]
         sections.append(
             f"""    <section>
-      <h2><a href="{esc(job_path(job))}">{esc(job_title)}</a></h2>
+      <h2 class="job"><a href="{esc(job_path(job))}">{esc(job_title)}</a></h2>
       <ul class="skill-index">
         {chr(10).join(items)}
       </ul>
@@ -501,13 +779,45 @@ def render_index(data: dict, skills: list[dict]) -> tuple[str, str, str]:
         )
     snapshot = show_time(data["generated_at"])
     body = f"""{section_nav("index")}
-    <h1>Skills</h1>
-    <p class="pending">Our own scoring is pending (M4).</p>
-    <p>Twenty skills in three jobs: frontend and design, code review, testing, and debugging, and docs, slides, and writing. Within each job, skills are listed alphabetically by slug. Each row links to the skill and shows its evidence label.</p>
+    <h1>Agent skills, and the evidence behind them</h1>
+    <p>This directory lists agent skills for three kinds of work, and the public evidence behind each one. The label on each row says whether a project published a result, or the skill is only popular so far.</p>
+    <p class="pending">{SCORES_LINE}</p>
+    <p>Inside each job, skills are listed alphabetically by slug. This is not a ranking.</p>
+    <h2 id="labels">What the labels mean</h2>
+{legend_html()}
     <p class="note">Data snapshot {esc(snapshot)}. Collection notes are on the <a href="/skills/method/">method</a> page.</p>
 {chr(10).join(sections)}
 """
     jsonld = web_page(title, description, canonical, item_list("Skills grouped by job", entries))
+    return canonical, title, render_page(title, description, canonical, body, jsonld)
+
+
+def render_jobs_index(data: dict, skills: list[dict]) -> tuple[str, str, str]:
+    canonical = ORIGIN + "/skills/jobs/"
+    title = "Skill jobs · Lucky Sushi"
+    description = (
+        "The three jobs in the skill directory: frontend and design, "
+        "code review, testing, and debugging, and docs, slides, and writing."
+    )
+    items = []
+    entries = []
+    for job, job_title in JOBS:
+        count = len(sorted_skills(skills, job))
+        entries.append((job_title, job_url(job)))
+        items.append(
+            f'<li><a href="{esc(job_path(job))}">{esc(job_title)}</a> '
+            f'<span class="note">{count} skills</span></li>'
+        )
+    body = f"""{section_nav("jobs")}
+    <h1>Jobs</h1>
+    <p class="pending">{SCORES_LINE}</p>
+    <p>The <a href="/skills/">directory</a> groups skills into these three jobs. Each job page lists its skills alphabetically by slug.</p>
+    <ul class="skill-index">
+      {chr(10).join(items)}
+    </ul>
+    <p class="note">Data snapshot {esc(show_time(data["generated_at"]))}.</p>
+"""
+    jsonld = web_page(title, description, canonical, item_list("Skill jobs", entries))
     return canonical, title, render_page(title, description, canonical, body, jsonld)
 
 
@@ -516,30 +826,23 @@ def render_job(data: dict, skills: list[dict], job: str) -> tuple[str, str, str]
     canonical = job_url(job)
     title = f"{job_title} skills · Lucky Sushi"
     description = (
-        f"{job_title} skills listed alphabetically by slug, with evidence labels and third-party measurements. "
-        "Our own scoring is pending (M4)."
+        f"{job_title} skills in the directory, listed alphabetically by slug. "
+        "Each row has one evidence label."
     )
-    cards = []
     entries = []
+    items = []
     for skill in sorted_skills(skills, job):
         entries.append((f"{skill['owner']}/{skill['slug']}", skill_url(skill)))
-        cards.append(
-            f"""    <article class="skill-card">
-      <h3><a href="{esc(skill_path(skill))}">{esc(skill["slug"])}</a></h3>
-      <p class="tag">{esc(label_text(skill))}</p>
-      <p class="note">{esc(skill["owner"])}/{esc(skill["repo"])}</p>
-      <ul>
-        {measurement_items(skill)}
-      </ul>
-    </article>"""
-        )
+        items.append(skill_row(skill))
     body = f"""{section_nav(job)}
-    <p class="eyebrow">Skills</p>
+    <p class="eyebrow"><a href="/skills/">Directory</a></p>
     <h1>{esc(job_title)}</h1>
-    <p class="pending">Our own scoring is pending (M4).</p>
-    <p>These skills are listed alphabetically by slug. The list shows each evidence label and the third-party measurements stored for that skill, including values the source published that are excluded from the label.</p>
+    <p class="pending">{SCORES_LINE}</p>
+    <p>These skills are listed alphabetically by slug. Each row shows one evidence label. The figures behind a label are on the skill page. <a href="/skills/#labels">What the labels mean</a>.</p>
     <p class="note">Data snapshot {esc(show_time(data["generated_at"]))}.</p>
-{chr(10).join(cards)}
+    <ul class="skill-index">
+      {chr(10).join(items)}
+    </ul>
 """
     jsonld = web_page(
         title,
@@ -555,43 +858,48 @@ def render_skill(data: dict, skill: dict) -> tuple[str, str, str]:
     title = f"{skill['slug']} by {skill['owner']} · Lucky Sushi"
     description = (
         f"{skill['owner']}/{skill['slug']}: {label_text(skill)}. "
-        "Installs, audits, stars, last commit, and third-party measurements, each with its source. "
-        "Our own score is pending."
+        "Author's claim, published results, installs, audits, stars, and last commit, each with its source."
     )
     folder = skill["skill_folder_url"]
     if folder.get("value"):
-        folder_line = f'Skill folder: {ext_link(folder["value"], "folder on GitHub")} · {fetched(folder)}'
+        folder_line = f'Skill folder: {ext_link(folder["value"], "folder on GitHub")}.'
     else:
         reason = folder.get("reason") or "no reason recorded"
         folder_line = f'Folder unavailable. <span class="verbatim">{esc(reason)}</span>'
     repo_url = f"https://github.com/{skill['owner']}/{skill['repo']}"
     audits = skill["skills_sh"]["audits"]
-    audit_html = []
-    for key in ("gen", "snyk", "socket"):
-        row = audits[key]
-        audit_html.append(fact_block(AUDIT_TITLES[key], row, audit_body(row)))
+    fact_rows = [
+        ("Installs", skill["skills_sh"]["installs"], number_body(skill["skills_sh"]["installs"]), None),
+        ("Gen audit", audits["gen"], audit_body(audits["gen"]), audit_page_url(skill, "gen")),
+        ("Snyk audit", audits["snyk"], audit_body(audits["snyk"]), audit_page_url(skill, "snyk")),
+        ("Socket audit", audits["socket"], audit_body(audits["socket"]), audit_page_url(skill, "socket")),
+        ("GitHub stars", skill["github"]["stars"], number_body(skill["github"]["stars"]), repo_url),
+        (
+            "Last commit on the skill folder",
+            skill["github"]["skill_folder_last_commit"],
+            time_body(skill["github"]["skill_folder_last_commit"]),
+            None,
+        ),
+    ]
+    fact_html = "\n".join(
+        fact_block(title, row, body, link) for title, row, body, link in fact_rows
+    )
+    fact_when = fetched_phrase([row.get("fetched_at") or "" for _title, row, _body, _link in fact_rows])
     body = f"""{section_nav("skill")}
     <p class="eyebrow"><a href="{esc(job_path(skill["job"]))}">{esc(JOB_TITLES[skill["job"]])}</a></p>
     <h1>{esc(skill["slug"])}</h1>
     <p class="tag">{esc(label_text(skill))}</p>
-    <p class="pending">Our own scoring is pending (M4).</p>
+    <p>{esc(label_blurb(skill))} <a href="/skills/#labels">All labels</a>.</p>
+    <p class="pending">{SCORES_LINE}</p>
     <p>{esc(skill["owner"])}/{esc(skill["repo"])}. {ext_link(repo_url, "Repository")}. {folder_line}</p>
-    <div class="claim-and-results">
 {author_section(skill)}
-      <section>
-        <h2>Third-party results</h2>
-        <p>The author's description is quoted beside the figures other projects published for this skill. A pack-level result is not copied onto the skill.</p>
-        <ul>
-          {measurement_items(skill)}
-        </ul>
-      </section>
-    </div>
-    <h2>Installs, audits, stars, and last commit</h2>
-    <p>Each figure below keeps the link it was read from and the time it was fetched. An unavailable value says so, with the reason.</p>
-{fact_block("Installs", skill["skills_sh"]["installs"], number_body(skill["skills_sh"]["installs"]))}
-{chr(10).join(audit_html)}
-{fact_block("GitHub stars", skill["github"]["stars"], number_body(skill["github"]["stars"]))}
-{fact_block("Last commit on the skill folder", skill["github"]["skill_folder_last_commit"], time_body(skill["github"]["skill_folder_last_commit"]))}
+{results_section(skill)}
+    <section>
+      <h2>Installs, audits, stars, and last commit</h2>
+      <p>Each figure keeps the page it was read from. An unavailable value says so, with the reason.</p>
+      <p class="note">{fact_when}</p>
+{fact_html}
+    </section>
     <p class="note">Data snapshot {esc(show_time(data["generated_at"]))}.</p>
 """
     folder_value = folder.get("value") or repo_url
@@ -616,19 +924,21 @@ def method_body(data: dict) -> str:
     snapshot = show_time(data["generated_at"])
     return f"""{section_nav("method")}
     <h1>How skill evidence is collected</h1>
-    <p class="pending">Our own scoring is pending (M4).</p>
+    <p class="pending">{SCORES_LINE}</p>
     <p>This page describes the public data behind the skill pages and the scoring plan. The words here are ours. Third-party sites are named so a figure can be traced, and their sentences are quoted on the skill pages rather than rewritten here.</p>
     <h2>What was collected</h2>
-    <p>A collector in this repository reads public web pages and the GitHub REST API, then writes the JSON file the pages are generated from. It does not log into a site and it does not call a model API. Every stored value keeps the URL it came from and the UTC time of the fetch. When a value could not be read, the file stores a reason, and the skill page repeats that reason.</p>
-    <p>The set is 20 skills in three jobs. The author's words on a skill page are the description field from that skill's SKILL.md, quoted beside the third-party figures.</p>
-    <p>Install counts come from the public skills.sh page for that skill. The skills.sh detail API returned HTTP 401 when called without a credential, so the collector left it unused. Audit rows for Gen, Snyk, and Socket come from the public skills.sh audit API. GitHub stars are the star count of the repository that holds the skill. The last commit is the newest commit that touched the skill folder, and the page links to that commit.</p>
+    <p>A collector in this repository reads public web pages and the GitHub REST API, then writes the JSON file the pages are generated from. It does not log into a site and it does not call a model API. Every stored value keeps the URL it came from and the UTC time of the fetch. When a value could not be read, the file stores a reason, and the skill page says what that means in plain language.</p>
+    <p>The set is 20 skills in three jobs. The author's words on a skill page are the description field from that skill's SKILL.md, quoted above the published results.</p>
+    <p>Install counts come from the public skills.sh page for that skill. The skills.sh detail API returned HTTP 401 when called without a credential, so the collector left it unused. Audit rows for Gen, Snyk, and Socket were read from the public skills.sh audit API. The skill page links to the readable audit page on skills.sh. GitHub stars are the star count of the repository, and the page links to that repository. The last commit is the newest commit that touched the skill folder, and the page links to that commit. OpenSkillEval scores were read from that project's published data. The skill page links to the OpenSkillEval site.</p>
     <p>The data snapshot for these pages is {esc(snapshot)}.</p>
     <h2>What each evidence label means</h2>
-    <p><strong>Measured by us.</strong> We have run the skill on our tasks and stored the trials. No skill has this label yet, because our own scoring is pending (M4).</p>
-    <p><strong>Measured by a third party.</strong> At least one skill-level effect metric from another project has a value. The metrics that count are SkillzBench pass-rate lift, SkillzBench quality lift, Tessl impact, Driftproof with-skill and without-skill means, Happycapy overall score, Edge mean judge score on a named task (with the skill and without it), Edge wins, ties, and losses, and OpenSkillEval average score.</p>
-    <p><strong>Popular but unmeasured.</strong> Public signals such as installs or stars are on the page, and none of those effect metrics has a value.</p>
-    <p>Tessl quality, SkillzBench trust, and SkillzBench quality judgment are not counted as measurements. They stay on the skill page when the source published them, and they do not set the evidence label. The same exclusion covers Edge {esc(edge_excluded)}, and a SWE-Skills-Bench note that a name is listed in a table. A table listing is not a score. The SWE-Skills-Bench repository URL named in its paper returned HTTP 404, so the collector read the public paper table and stored no numeric SWE result.</p>
-    <p>A result published for a pack, a plugin bundle, or a whole repository is not copied onto one skill inside it. When that is the only entry a source has, the skill page says the per-skill value is unavailable and gives the reason.</p>
+    <p>The <a href="/skills/">directory</a> shows one label on each row. The same four labels are explained under <a href="/skills/#labels">What the labels mean</a>.</p>
+    <p><strong>Measured by us.</strong> We have run the skill on our tasks and stored the trials. No skill has this label yet.</p>
+    <p><strong>Third-party result.</strong> Another project published a skill-level result, and it did not mark that result as directional or too small to tell. The results that can earn this label are a SkillzBench pass rate change, a SkillzBench quality change, Tessl impact, Driftproof with the skill and without it, a Happycapy overall score, an Edge judge score on a named task, Edge wins, ties, and losses, and an OpenSkillEval average score.</p>
+    <p><strong>Too early to tell.</strong> The only skill-level results are ones the source marks as directional, or the source says there are too few answers to tell. Those rows stay on the skill page. They do not count as a third-party result.</p>
+    <p><strong>Popular but unmeasured.</strong> Installs or stars are public, and no skill-level result is on file.</p>
+    <p>Tessl quality, SkillzBench trust, and SkillzBench quality rating stay on the skill page when the source published them. They are shown as published, and excluded from the evidence label. The same exclusion covers Edge {esc(edge_excluded)}, and a SWE-Skills-Bench note that a name is listed in a table. A table listing is not a score. The SWE-Skills-Bench repository URL named in its paper returned HTTP 404, so the collector read the public paper table and stored no numeric SWE result.</p>
+    <p>A result published for a pack, a plugin bundle, or a whole repository is not copied onto one skill inside it. When that is the only entry a source has, the skill page says the per-skill value is not available and gives the reason.</p>
     <h2>Three arms, once scoring starts</h2>
     <p>The planned comparison has three arms: no skill, the skill, and a length-matched placebo. The placebo is text of the same length as the skill, without the skill's instructions. Each arm is planned for repeated trials. A published score will include pass-rate lift, a confidence interval, tokens, and cost. Every score will name the model that produced it.</p>
     <p>The run record will name the model, the harness version, the skill commit, the task version, the seeds, the verifier, the pass or fail of each trial, the token cost, and the command that reruns it. Any cut to tasks or trials will be written into that record. Until a record exists, job pages stay in alphabetical order by slug.</p>
@@ -703,7 +1013,7 @@ def render_runs_index(runs: list[dict]) -> tuple[str, str, str]:
         lead = "<p>No runs are recorded yet.</p>"
     body = f"""{section_nav("runs")}
     <h1>Run records</h1>
-    <p class="pending">Our own scoring is pending (M4).</p>
+    <p class="pending">{SCORES_LINE}</p>
     {lead}
     <p>When a score is produced, its page will live at <code>/skills/runs/&lt;run-id&gt;/</code>. The generator writes that page only from a run record. It does not invent a run, a score, or a trial.</p>
     <h2>What a record contains</h2>
@@ -867,6 +1177,62 @@ def check_banned(page_html: str, where: str) -> None:
         fail(f"banned word {match.group(0)!r} in {where}: {text[start:end]!r}")
 
 
+RAW_LINK_RE = re.compile(r"skills-detail\.json|/api/v1/skills/audit/|api\.github\.com")
+
+
+def check_public_copy(page_html: str, where: str) -> None:
+    text = our_copy_text(page_html)
+    if re.search(r"\bM[0-9]\b", text):
+        fail(f"internal milestone name in {where}")
+    if "—" in text or "–" in text:
+        fail(f"em dash or en dash in {where}")
+    if "Measured by a third party" in text:
+        fail(f"old evidence label in {where}")
+    if re.search(r"\bleaderboard\b", text, re.I):
+        fail(f"leaderboard in our copy in {where}")
+    if RAW_LINK_RE.search(page_html):
+        fail(f"raw JSON source link in {where}")
+    if page_html.count("Shown as published. Excluded from the evidence label.") > 1:
+        fail(f"exclusion note repeats in {where}")
+    for match in re.finditer(r"<li>(.*?)</li>", page_html, re.S):
+        tags = re.findall(r'class="tag"', match.group(1))
+        if len(tags) > 1:
+            fail(f"evidence label appears {len(tags)} times in one row on {where}")
+
+
+def check_display_labels(skills: list[dict]) -> None:
+    by_id = {f"{skill['owner']}/{skill['slug']}": skill for skill in skills}
+    expect = {
+        "mattpocock/tdd": "too_early",
+        "mattpocock/code-review": "too_early",
+        "obra/test-driven-development": "too_early",
+        "obra/requesting-code-review": "too_early",
+        "addyosmani/code-review-and-quality": "too_early",
+        "pbakaus/impeccable": "popular_but_unmeasured",
+        "mattpocock/diagnosing-bugs": "popular_but_unmeasured",
+        "obra/systematic-debugging": "popular_but_unmeasured",
+        "hugohe3/ppt-master": "popular_but_unmeasured",
+        "anthropics/frontend-design": "third_party_result",
+        "anthropics/pptx": "third_party_result",
+        "Leonxlnx/design-taste-frontend": "third_party_result",
+    }
+    for ident, key in expect.items():
+        got = display_label_key(by_id[ident])
+        if got != key:
+            fail(f"{ident} display label is {got}, expected {key}")
+    for skill in skills:
+        key = display_label_key(skill)
+        effects = effect_rows(skill)
+        firm = [row for _source_key, row in effects if not row_is_weak(row)]
+        weak = [row for _source_key, row in effects if row_is_weak(row)]
+        if key == "popular_but_unmeasured" and effects:
+            fail(f"{skill['id']} is popular but unmeasured and still has an effect row")
+        if key == "too_early" and (firm or not weak):
+            fail(f"{skill['id']} is too early with firm={bool(firm)} weak={bool(weak)}")
+        if key == "third_party_result" and not firm:
+            fail(f"{skill['id']} is a third-party result with no firm row")
+
+
 def check_jsonld(page_html: str, canonical: str, main_type: str) -> str:
     data = extract_jsonld(page_html)
     if data.get("@context") != "https://schema.org":
@@ -981,6 +1347,7 @@ def build() -> tuple[list[tuple[Path, str, str, str]], str]:
         if skill["job"] not in JOB_TITLES:
             fail(f"unknown job {skill['job']}")
         pack_level_guard(skill)
+    check_display_labels(skills)
     runs = load_runs()
     for run in runs:
         require_run(run)
@@ -992,6 +1359,8 @@ def build() -> tuple[list[tuple[Path, str, str, str]], str]:
 
     canonical, _title, page_html = render_index(data, skills)
     add("skills/index.html", canonical, page_html, "ItemList")
+    canonical, _title, page_html = render_jobs_index(data, skills)
+    add("skills/jobs/index.html", canonical, page_html, "ItemList")
     for job, _title in JOBS:
         canonical, _title, page_html = render_job(data, skills, job)
         add(f"skills/jobs/{job}/index.html", canonical, page_html, "ItemList")
@@ -1010,7 +1379,9 @@ def build() -> tuple[list[tuple[Path, str, str, str]], str]:
     descriptions = []
     canonicals = []
     for path, page_html, canonical, main_type in pages:
-        check_banned(page_html, str(path.relative_to(ROOT)))
+        where = str(path.relative_to(ROOT))
+        check_banned(page_html, where)
+        check_public_copy(page_html, where)
         kind = check_jsonld(page_html, canonical, main_type)
         print(f"jsonld ok {canonical} {kind}")
         title = re.search(r"<title>(.*?)</title>", page_html).group(1)
@@ -1031,7 +1402,11 @@ def build() -> tuple[list[tuple[Path, str, str, str]], str]:
     sitemap = render_sitemap(locs)
     count = check_sitemap(sitemap, canonicals)
     rels = [path.relative_to(SITE).as_posix() for path, *_rest in pages]
-    n_jobs = sum(1 for rel in rels if rel.startswith("skills/jobs/") and rel.endswith("/index.html"))
+    n_jobs = sum(
+        1
+        for rel in rels
+        if rel.startswith("skills/jobs/") and rel.endswith("/index.html") and rel.count("/") == 3
+    )
     n_skills = sum(
         1
         for rel in rels
@@ -1044,13 +1419,35 @@ def build() -> tuple[list[tuple[Path, str, str, str]], str]:
     n_run_pages = sum(1 for rel in rels if rel.startswith("skills/runs/") and rel.count("/") == 3)
     print(
         "page_count "
-        f"index=1 jobs={n_jobs} skills={n_skills} runs_index=1 method=1 "
+        f"index=1 jobs_index=1 jobs={n_jobs} skills={n_skills} runs_index=1 method=1 "
         f"run_records={n_run_pages} total={len(pages)}"
     )
     print(f"sitemap ok urls={count}")
     print("banned_words ok")
-    if n_jobs != 3 or n_skills != 20 or len(pages) != 26 + n_run_pages:
+    if "skills/jobs/index.html" not in rels:
+        fail("missing skills/jobs/index.html")
+    if n_jobs != 3 or n_skills != 20 or len(pages) != 27 + n_run_pages:
         fail(f"unexpected page count total={len(pages)} skills={n_skills} jobs={n_jobs}")
+    tdd_html = next(html for path, html, _canonical, _main in pages if path.name == "index.html" and path.parent.name == "tdd")
+    if "Too early to tell" not in tdd_html:
+        fail("tdd page lost the too-early label")
+    if tdd_html.count("Shown as published. Excluded from the evidence label.") != 1:
+        fail("tdd page should state the exclusion note once")
+    if len(re.findall(r"Fetched <time", tdd_html)) != 3:
+        fail("tdd page should state Fetched once per section")
+    if "without skill" in tdd_html or "; The source says:" in tdd_html:
+        fail("tdd comparison result is still a run-on string")
+    pptx_html = next(
+        html for path, html, _canonical, _main in pages if path.parent.name == "pptx" and path.name == "index.html"
+    )
+    if "without skill" in pptx_html or "task: Build a board" in pptx_html:
+        fail("pptx comparison result is still a run-on string")
+    if "Counts toward the label" not in tdd_html or "Early only" not in tdd_html:
+        fail("tdd page is missing the plain counts column")
+    if 'href="/#bench"' in tdd_html or ">Rally<" in tdd_html:
+        fail("skills header still links Rally at a homepage anchor")
+    if "/security/snyk" not in tdd_html or "/security/agent-trust-hub" not in tdd_html:
+        fail("tdd audits do not link to the readable skills.sh pages")
     return pages, sitemap
 
 

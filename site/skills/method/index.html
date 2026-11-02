@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="How skill evidence is collected · Lucky Sushi">
   <meta name="twitter:description" content="How skill pages collect public data, what each evidence label means, and the three planned arms: no skill, skill, and a length-matched placebo.">
   <meta name="twitter:image" content="https://luckysushi.ai/assets/og-image.jpg">
-  <link rel="stylesheet" href="/styles.css?v=791eb4698a">
+  <link rel="stylesheet" href="/styles.css?v=1de8926abc">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -47,27 +47,29 @@
   </script>
 </head>
 <body>
-  <header class="wrap top">
+  <header class="wrap top wide">
     <a class="brand" href="/">Lucky Sushi</a>
-    <nav aria-label="Main"><a href="/#bench">Rally</a><a class="nav-extra" href="/#scout">Scout</a><a class="nav-extra" href="/#handler">Handler</a><a href="/#off-leash-lab">Lab</a><a href="/skills/">Skills</a><a href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe</a></nav>
+    <nav aria-label="Main"><a href="/skills/" aria-current="page">Skills</a><a href="https://luckysushi.substack.com/subscribe" rel="noopener">Subscribe</a></nav>
   </header>
 <main>
-  <div class="wrap sheet">
+  <div class="wrap sheet wide">
     <nav class="section-nav" aria-label="Skills"><a href="/skills/">All skills</a><a href="/skills/jobs/frontend-design/">Frontend and design</a><a href="/skills/jobs/code-review-testing-debugging/">Code review, testing, and debugging</a><a href="/skills/jobs/docs-slides-writing/">Docs, slides, and writing</a><a href="/skills/method/" aria-current="page">Method</a><a href="/skills/runs/">Run records</a></nav>
     <h1>How skill evidence is collected</h1>
-    <p class="pending">Our own scoring is pending (M4).</p>
+    <p class="pending">Our own scores are coming; for now we show published evidence.</p>
     <p>This page describes the public data behind the skill pages and the scoring plan. The words here are ours. Third-party sites are named so a figure can be traced, and their sentences are quoted on the skill pages rather than rewritten here.</p>
     <h2>What was collected</h2>
-    <p>A collector in this repository reads public web pages and the GitHub REST API, then writes the JSON file the pages are generated from. It does not log into a site and it does not call a model API. Every stored value keeps the URL it came from and the UTC time of the fetch. When a value could not be read, the file stores a reason, and the skill page repeats that reason.</p>
-    <p>The set is 20 skills in three jobs. The author's words on a skill page are the description field from that skill's SKILL.md, quoted beside the third-party figures.</p>
-    <p>Install counts come from the public skills.sh page for that skill. The skills.sh detail API returned HTTP 401 when called without a credential, so the collector left it unused. Audit rows for Gen, Snyk, and Socket come from the public skills.sh audit API. GitHub stars are the star count of the repository that holds the skill. The last commit is the newest commit that touched the skill folder, and the page links to that commit.</p>
+    <p>A collector in this repository reads public web pages and the GitHub REST API, then writes the JSON file the pages are generated from. It does not log into a site and it does not call a model API. Every stored value keeps the URL it came from and the UTC time of the fetch. When a value could not be read, the file stores a reason, and the skill page says what that means in plain language.</p>
+    <p>The set is 20 skills in three jobs. The author's words on a skill page are the description field from that skill's SKILL.md, quoted above the published results.</p>
+    <p>Install counts come from the public skills.sh page for that skill. The skills.sh detail API returned HTTP 401 when called without a credential, so the collector left it unused. Audit rows for Gen, Snyk, and Socket were read from the public skills.sh audit API. The skill page links to the readable audit page on skills.sh. GitHub stars are the star count of the repository, and the page links to that repository. The last commit is the newest commit that touched the skill folder, and the page links to that commit. OpenSkillEval scores were read from that project's published data. The skill page links to the OpenSkillEval site.</p>
     <p>The data snapshot for these pages is 2026-11-01 14:39:05 UTC.</p>
     <h2>What each evidence label means</h2>
-    <p><strong>Measured by us.</strong> We have run the skill on our tasks and stored the trials. No skill has this label yet, because our own scoring is pending (M4).</p>
-    <p><strong>Measured by a third party.</strong> At least one skill-level effect metric from another project has a value. The metrics that count are SkillzBench pass-rate lift, SkillzBench quality lift, Tessl impact, Driftproof with-skill and without-skill means, Happycapy overall score, Edge mean judge score on a named task (with the skill and without it), Edge wins, ties, and losses, and OpenSkillEval average score.</p>
-    <p><strong>Popular but unmeasured.</strong> Public signals such as installs or stars are on the page, and none of those effect metrics has a value.</p>
-    <p>Tessl quality, SkillzBench trust, and SkillzBench quality judgment are not counted as measurements. They stay on the skill page when the source published them, and they do not set the evidence label. The same exclusion covers Edge baseline outputs passed, recorded agent runs, skill outputs passed, and a SWE-Skills-Bench note that a name is listed in a table. A table listing is not a score. The SWE-Skills-Bench repository URL named in its paper returned HTTP 404, so the collector read the public paper table and stored no numeric SWE result.</p>
-    <p>A result published for a pack, a plugin bundle, or a whole repository is not copied onto one skill inside it. When that is the only entry a source has, the skill page says the per-skill value is unavailable and gives the reason.</p>
+    <p>The <a href="/skills/">directory</a> shows one label on each row. The same four labels are explained under <a href="/skills/#labels">What the labels mean</a>.</p>
+    <p><strong>Measured by us.</strong> We have run the skill on our tasks and stored the trials. No skill has this label yet.</p>
+    <p><strong>Third-party result.</strong> Another project published a skill-level result, and it did not mark that result as directional or too small to tell. The results that can earn this label are a SkillzBench pass rate change, a SkillzBench quality change, Tessl impact, Driftproof with the skill and without it, a Happycapy overall score, an Edge judge score on a named task, Edge wins, ties, and losses, and an OpenSkillEval average score.</p>
+    <p><strong>Too early to tell.</strong> The only skill-level results are ones the source marks as directional, or the source says there are too few answers to tell. Those rows stay on the skill page. They do not count as a third-party result.</p>
+    <p><strong>Popular but unmeasured.</strong> Installs or stars are public, and no skill-level result is on file.</p>
+    <p>Tessl quality, SkillzBench trust, and SkillzBench quality rating stay on the skill page when the source published them. They are shown as published, and excluded from the evidence label. The same exclusion covers Edge baseline outputs passed, recorded agent runs, skill outputs passed, and a SWE-Skills-Bench note that a name is listed in a table. A table listing is not a score. The SWE-Skills-Bench repository URL named in its paper returned HTTP 404, so the collector read the public paper table and stored no numeric SWE result.</p>
+    <p>A result published for a pack, a plugin bundle, or a whole repository is not copied onto one skill inside it. When that is the only entry a source has, the skill page says the per-skill value is not available and gives the reason.</p>
     <h2>Three arms, once scoring starts</h2>
     <p>The planned comparison has three arms: no skill, the skill, and a length-matched placebo. The placebo is text of the same length as the skill, without the skill's instructions. Each arm is planned for repeated trials. A published score will include pass-rate lift, a confidence interval, tokens, and cost. Every score will name the model that produced it.</p>
     <p>The run record will name the model, the harness version, the skill commit, the task version, the seeds, the verifier, the pass or fail of each trial, the token cost, and the command that reruns it. Any cut to tasks or trials will be written into that record. Until a record exists, job pages stay in alphabetical order by slug.</p>
