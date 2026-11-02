@@ -1,4 +1,4 @@
-# Skill ranker data (M1) and pages (M2)
+# Skill directory data and pages
 
 Public identifiers and freshly fetched measurements for the 20 seed skills. The collector writes `data/skills/skills.json`. `build_pages.py` reads that file and writes `site/skills/`. This directory is not uploaded. The generated pages are.
 
