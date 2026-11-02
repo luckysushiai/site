@@ -169,6 +169,66 @@ def fmt_value(value) -> str:
     return fmt_scalar(value)
 
 
+def measurement_fields(metric, value) -> dict:
+    """Split a stored result into a figure, a with/without pair, and a note.
+
+    Comparison results keep the two scores in their own fields. A single
+    published figure stays with the row title. Notes are the source's own
+    words, except the directional sentence, which is ours.
+    """
+    figure = None
+    with_skill = None
+    without_skill = None
+    title = None
+    source_notes: list[str] = []
+    our_notes: list[str] = []
+    if metric == "with_vs_without_mean" and isinstance(value, dict):
+        title = "Mean score"
+        with_skill = fmt_scalar(value.get("with_skill"))
+        without_skill = fmt_scalar(value.get("without_skill"))
+        if value.get("verdict"):
+            source_notes.append(str(value.get("verdict")))
+    elif metric == "mean_overall_judge_score" and isinstance(value, dict):
+        title = str(value.get("task") or "Judge score on a task")
+        with_skill = fmt_scalar(value.get("with_skill"))
+        without_skill = fmt_scalar(value.get("without_skill"))
+        if value.get("protocol"):
+            source_notes.append(str(value.get("protocol")))
+        if value.get("scale"):
+            source_notes.append(f"Scale: {value.get('scale')}")
+    elif metric == "impact" and isinstance(value, dict):
+        bits = []
+        if value.get("percent") is not None:
+            bits.append(str(value.get("percent")))
+        if value.get("multiplier"):
+            bits.append(str(value.get("multiplier")))
+        figure = ", ".join(bits) if bits else fmt_value(value)
+    elif metric == "avg_score" and isinstance(value, dict):
+        figure = fmt_scalar(value.get("avg_score"))
+        extra = []
+        if value.get("n_results") is not None:
+            extra.append(f"{fmt_scalar(value.get('n_results'))} results")
+        if value.get("task"):
+            extra.append(f"task {value.get('task')}")
+        if extra:
+            source_notes.append(", ".join(extra))
+    else:
+        raw = fmt_value(value)
+        if isinstance(value, str) and re.search(r"directional", value, re.I):
+            figure = re.sub(r"\s*directional\b", "", value, flags=re.I).strip()
+            our_notes.append("The source calls this directional.")
+        else:
+            figure = raw
+    return {
+        "title": title,
+        "figure": figure,
+        "with_skill": with_skill,
+        "without_skill": without_skill,
+        "source_notes": source_notes,
+        "our_notes": our_notes,
+    }
+
+
 def fmt_measurement_value(metric, value) -> str:
     if metric == "with_vs_without_mean" and isinstance(value, dict):
         parts = [
@@ -285,7 +345,7 @@ def counts_cell(source_key: str, row: dict) -> str:
     if not is_effect_measurement(source_key, row):
         return "No"
     if row_is_weak(row):
-        return "Early"
+        return "Early only"
     return "Yes"
 
 
@@ -415,62 +475,69 @@ def results_section(skill: dict) -> str:
         if valued:
             groups.append((source_key, valued))
         missing.extend((source_key, row) for row in empty)
+    stamps = [row.get("fetched_at") or "" for _source_key, rows in groups for row in rows]
+    stamps.extend(row.get("fetched_at") or "" for _source_key, row in missing)
+    when = fetched_phrase(stamps)
     parts = [
         "    <section>",
         "      <h2>Published results</h2>",
         "      <p>These are the figures other projects published for this skill. A pack-level result is not copied onto the skill.</p>",
     ]
+    if when:
+        parts.append(f'      <p class="note">{when}</p>')
     if groups:
         parts.append(
             '      <p class="note">Shown as published. Excluded from the evidence label. '
-            "The last column says No for those rows. "
-            "Early means the source marked the result as directional, or said there are too few answers to tell. "
+            "Counts toward the label is Yes when the row sets Third-party result, "
+            "Early only when the source marked it directional or said there are too few answers to tell, "
+            "and No when the figure is shown but does not count. "
             "A blank model means the source did not name one.</p>"
         )
         parts.append('      <table class="results">')
         parts.append(
-            "        <thead><tr><th scope=\"col\">Result</th><th scope=\"col\">Value</th>"
-            "<th scope=\"col\">Model</th><th scope=\"col\">Used for the label</th></tr></thead>"
+            "        <thead><tr>"
+            '<th scope="col">Result</th>'
+            '<th scope="col">With the skill</th>'
+            '<th scope="col">Without the skill</th>'
+            '<th scope="col">Note</th>'
+            '<th scope="col">Model</th>'
+            '<th scope="col">Counts toward the label</th>'
+            "</tr></thead>"
         )
         parts.append("        <tbody>")
         for source_key, rows in groups:
             source = rows[0].get("source") or SOURCE_NAMES.get(source_key, source_key)
             urls = []
-            stamps = []
             for row in rows:
                 url = readable_url(source_key, row.get("url") or "", skill)
                 if url and url not in urls:
                     urls.append(url)
-                stamps.append(row.get("fetched_at") or "")
-            when = fetched_phrase(stamps)
             bits = [esc(source)]
             if len(urls) == 1:
                 bits.append(source_link(source_key, rows[0].get("url") or "", skill))
-            if when:
-                bits.append(when)
-            parts.append(f'          <tr class="group"><th colspan="4">{" · ".join(bits)}</th></tr>')
+            parts.append(f'          <tr class="group"><th colspan="6">{" · ".join(bits)}</th></tr>')
             for row in rows:
                 metric = row.get("metric")
-                metric_label = METRIC_LABELS.get(metric, metric or "Result")
-                value = fmt_measurement_value(metric, row.get("value"))
-                model = row.get("model")
-                model_html = f'<span class="verbatim">{esc(model)}</span>' if model else ""
+                fields = measurement_fields(metric, row.get("value"))
+                metric_label = fields["title"] or METRIC_LABELS.get(metric, metric or "Result")
                 name = esc(metric_label)
+                if fields["figure"]:
+                    name += f' <span class="verbatim">{esc(fields["figure"])}</span>'
                 if len(urls) != 1:
                     name += " " + source_link(source_key, row.get("url") or "", skill)
                 parts.append(
                     "          <tr>"
                     f'<th scope="row">{name}</th>'
-                    f'<td data-label="Value"><span class="verbatim">{esc(value)}</span></td>'
-                    f'<td data-label="Model">{model_html}</td>'
-                    f'<td data-label="Used for the label">{esc(counts_cell(source_key, row))}</td>'
+                    f"{paired_cell(fields['with_skill'], 'With the skill')}"
+                    f"{paired_cell(fields['without_skill'], 'Without the skill')}"
+                    f"{note_cell(fields['source_notes'], fields['our_notes'])}"
+                    f"{paired_cell(row.get('model'), 'Model')}"
+                    f'<td data-label="Counts toward the label">{esc(counts_cell(source_key, row))}</td>'
                     "</tr>"
                 )
         parts.append("        </tbody>")
         parts.append("      </table>")
     if missing:
-        stamps = [row.get("fetched_at") or "" for _source_key, row in missing]
-        when = fetched_phrase(stamps)
         parts.append("      <h3>No skill-level result</h3>")
         parts.append('      <ul class="missing">')
         for source_key, row in missing:
@@ -482,10 +549,26 @@ def results_section(skill: dict) -> str:
                 f"{source_link(source_key, row.get('url') or '', skill)}</li>"
             )
         parts.append("      </ul>")
-        if when:
-            parts.append(f'      <p class="note">{when}</p>')
     parts.append("    </section>")
     return "\n".join(parts)
+
+
+def paired_cell(value, label: str) -> str:
+    if value in (None, ""):
+        return f'<td class="is-empty" data-label="{esc(label)}"></td>'
+    return (
+        f'<td data-label="{esc(label)}"><span class="verbatim">{esc(value)}</span></td>'
+    )
+
+
+def note_cell(source_notes: list[str], our_notes: list[str]) -> str:
+    parts = []
+    if source_notes:
+        parts.append(f'<span class="verbatim">{esc(". ".join(source_notes))}</span>')
+    parts.extend(esc(note) for note in our_notes)
+    if not parts:
+        return '<td class="is-empty" data-label="Note"></td>'
+    return f'<td data-label="Note">{" ".join(parts)}</td>'
 
 
 def header() -> str:
@@ -617,7 +700,7 @@ def fact_block(title: str, row: dict, body_html: str, link_url: str | None = Non
     return f"""    <section class="fact">
       <h3>{esc(title)}</h3>
 {body_html}
-      <p class="note">{ext_link(url)} · {fetched(row)}</p>
+      <p class="note">{ext_link(url)}</p>
     </section>"""
 
 
@@ -660,12 +743,17 @@ def author_section(skill: dict) -> str:
         quote = unavailable_paragraph(claim).strip()
     else:
         quote = f"<p>{esc(claim_text(claim.get('value')))}</p>"
+    stamps = [claim.get("fetched_at") or ""]
+    folder = skill.get("skill_folder_url") or {}
+    if folder.get("fetched_at"):
+        stamps.append(folder["fetched_at"])
+    when = fetched_phrase(stamps)
     return f"""    <section>
       <h2>Author's claim</h2>
       <blockquote class="verbatim">
         {quote}
       </blockquote>
-      <p class="note">Quoted from the description field of this skill's SKILL.md. {ext_link(claim["url"], "SKILL.md")} · {fetched(claim)}</p>
+      <p class="note">Quoted from the description field of this skill's SKILL.md. {ext_link(claim["url"], "SKILL.md")}. {when}</p>
     </section>"""
 
 
@@ -683,7 +771,7 @@ def render_index(data: dict, skills: list[dict]) -> tuple[str, str, str]:
         items = [skill_row(skill) for skill in sorted_skills(skills, job)]
         sections.append(
             f"""    <section>
-      <h2><a href="{esc(job_path(job))}">{esc(job_title)}</a></h2>
+      <h2 class="job"><a href="{esc(job_path(job))}">{esc(job_title)}</a></h2>
       <ul class="skill-index">
         {chr(10).join(items)}
       </ul>
@@ -774,16 +862,29 @@ def render_skill(data: dict, skill: dict) -> tuple[str, str, str]:
     )
     folder = skill["skill_folder_url"]
     if folder.get("value"):
-        folder_line = f'Skill folder: {ext_link(folder["value"], "folder on GitHub")} · {fetched(folder)}'
+        folder_line = f'Skill folder: {ext_link(folder["value"], "folder on GitHub")}.'
     else:
         reason = folder.get("reason") or "no reason recorded"
         folder_line = f'Folder unavailable. <span class="verbatim">{esc(reason)}</span>'
     repo_url = f"https://github.com/{skill['owner']}/{skill['repo']}"
     audits = skill["skills_sh"]["audits"]
-    audit_html = []
-    for key in ("gen", "snyk", "socket"):
-        row = audits[key]
-        audit_html.append(fact_block(AUDIT_TITLES[key], row, audit_body(row), audit_page_url(skill, key)))
+    fact_rows = [
+        ("Installs", skill["skills_sh"]["installs"], number_body(skill["skills_sh"]["installs"]), None),
+        ("Gen audit", audits["gen"], audit_body(audits["gen"]), audit_page_url(skill, "gen")),
+        ("Snyk audit", audits["snyk"], audit_body(audits["snyk"]), audit_page_url(skill, "snyk")),
+        ("Socket audit", audits["socket"], audit_body(audits["socket"]), audit_page_url(skill, "socket")),
+        ("GitHub stars", skill["github"]["stars"], number_body(skill["github"]["stars"]), repo_url),
+        (
+            "Last commit on the skill folder",
+            skill["github"]["skill_folder_last_commit"],
+            time_body(skill["github"]["skill_folder_last_commit"]),
+            None,
+        ),
+    ]
+    fact_html = "\n".join(
+        fact_block(title, row, body, link) for title, row, body, link in fact_rows
+    )
+    fact_when = fetched_phrase([row.get("fetched_at") or "" for _title, row, _body, _link in fact_rows])
     body = f"""{section_nav("skill")}
     <p class="eyebrow"><a href="{esc(job_path(skill["job"]))}">{esc(JOB_TITLES[skill["job"]])}</a></p>
     <h1>{esc(skill["slug"])}</h1>
@@ -793,12 +894,12 @@ def render_skill(data: dict, skill: dict) -> tuple[str, str, str]:
     <p>{esc(skill["owner"])}/{esc(skill["repo"])}. {ext_link(repo_url, "Repository")}. {folder_line}</p>
 {author_section(skill)}
 {results_section(skill)}
-    <h2>Installs, audits, stars, and last commit</h2>
-    <p>Each figure below keeps the page it was read from and the time it was fetched. An unavailable value says so, with the reason.</p>
-{fact_block("Installs", skill["skills_sh"]["installs"], number_body(skill["skills_sh"]["installs"]))}
-{chr(10).join(audit_html)}
-{fact_block("GitHub stars", skill["github"]["stars"], number_body(skill["github"]["stars"]), repo_url)}
-{fact_block("Last commit on the skill folder", skill["github"]["skill_folder_last_commit"], time_body(skill["github"]["skill_folder_last_commit"]))}
+    <section>
+      <h2>Installs, audits, stars, and last commit</h2>
+      <p>Each figure keeps the page it was read from. An unavailable value says so, with the reason.</p>
+      <p class="note">{fact_when}</p>
+{fact_html}
+    </section>
     <p class="note">Data snapshot {esc(show_time(data["generated_at"]))}.</p>
 """
     folder_value = folder.get("value") or repo_url
@@ -1332,6 +1433,17 @@ def build() -> tuple[list[tuple[Path, str, str, str]], str]:
         fail("tdd page lost the too-early label")
     if tdd_html.count("Shown as published. Excluded from the evidence label.") != 1:
         fail("tdd page should state the exclusion note once")
+    if len(re.findall(r"Fetched <time", tdd_html)) != 3:
+        fail("tdd page should state Fetched once per section")
+    if "without skill" in tdd_html or "; The source says:" in tdd_html:
+        fail("tdd comparison result is still a run-on string")
+    pptx_html = next(
+        html for path, html, _canonical, _main in pages if path.parent.name == "pptx" and path.name == "index.html"
+    )
+    if "without skill" in pptx_html or "task: Build a board" in pptx_html:
+        fail("pptx comparison result is still a run-on string")
+    if "Counts toward the label" not in tdd_html or "Early only" not in tdd_html:
+        fail("tdd page is missing the plain counts column")
     if 'href="/#bench"' in tdd_html or ">Rally<" in tdd_html:
         fail("skills header still links Rally at a homepage anchor")
     if "/security/snyk" not in tdd_html or "/security/agent-trust-hub" not in tdd_html:
