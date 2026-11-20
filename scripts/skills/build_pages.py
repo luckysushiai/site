@@ -130,6 +130,7 @@ SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 PRESERVED_LOCS = (
     "https://luckysushi.ai/",
     "https://luckysushi.ai/privacy",
+    "https://luckysushi.ai/aaron/",
 )
 
 

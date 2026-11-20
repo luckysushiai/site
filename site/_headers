@@ -42,3 +42,18 @@ https://luckysushi-ai.pages.dev/*
 
 /styles.css
   Cache-Control: public, max-age=3600
+
+# Aaron's card (site/aaron/) ships an inline stylesheet, inline style attributes, and an
+# inline script. The site-wide style-src and script-src do not allow those, so this path
+# detaches the inherited Content-Security-Policy and sets its own. It does not loosen the
+# policy for the rest of the site. Web Analytics hosts stay allowed, because Pages still
+# injects the beacon on this HTML. The vCard is a download: Pages would otherwise sniff .vcf.
+# Detach must stay below the /* rule; _headers joins a repeated header instead of replacing it.
+
+/aaron/*
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
+/aaron/aaron-wroblewski.vcf
+  Content-Type: text/vcard; charset=utf-8
+  Content-Disposition: attachment; filename="Aaron Wroblewski.vcf"
