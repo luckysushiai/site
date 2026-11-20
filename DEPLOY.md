@@ -16,7 +16,7 @@ Account, zone and ruleset IDs are deliberately left out of this public repo. The
 Rules:
 - Deploys need Aaron's yes.
 - Never touch DNS. The Email Routing MX/TXT records stay as they are.
-- Public site files must contain **no email address**. Before each deploy, this should print nothing: `rg -a -i '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}|mailto:' site`.
+- Public site files must contain **no email address**, except `site/aaron/` (Aaron's card keeps its mailto link and vCard EMAIL on purpose). That exemption is a decision Aaron must approve before merge or deploy. Before each deploy, this should print nothing: `rg -a -i -g '!site/aaron/**' '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}|mailto:' site`.
 - After any change to `site/styles.css`, run `python3 scripts/bust-css.py` and commit. Browsers cache `styles.css` for an hour.
 - HSTS is `max-age=86400`. Raising it, and HSTS preload, are separate decisions.
 

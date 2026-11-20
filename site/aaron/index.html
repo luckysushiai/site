@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aaron Wroblewski · Lucky Sushi</title>
+<meta name="description" content="Aaron Wroblewski, founder of Lucky Sushi. Applied ML and AI, agentic systems, LLM evaluation, knowledge and retrieval, MCP, experimentation platforms.">
+<meta name="theme-color" content="#eef0f2">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Aaron Wroblewski · Lucky Sushi">
+<meta property="og:description" content="Founder, Lucky Sushi. Ex Zillow, Amazon, Microsoft. Save my contact or connect on LinkedIn.">
+<meta property="og:url" content="https://luckysushi.ai/aaron">
+<meta property="og:image" content="https://luckysushi.ai/aaron/aaron.jpg">
+<link rel="icon" href="lucky-sushi.png">
+<link rel="apple-touch-icon" href="aaron.jpg">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;color-scheme:light;background:#eef0f2}
+body{margin:0;background:#eef0f2;color:#2f3a4a;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:#4a7475}a:hover{color:#2f3a4a}
+.serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+.jp{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",system-ui,sans-serif}
+main{max-width:440px;min-height:100vh;min-height:100dvh;margin:0 auto;padding:max(18px,calc(env(safe-area-inset-top) + 8px)) max(20px,env(safe-area-inset-right)) max(24px,calc(env(safe-area-inset-bottom) + 12px)) max(20px,env(safe-area-inset-left));display:flex;flex-direction:column;align-items:center}
+.top{align-self:stretch;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:8px;min-width:0;color:#2f3a4a;text-decoration:none}
+.brand img{width:46px;height:36px;object-fit:contain}
+.brand span{font-weight:700;font-size:19px;letter-spacing:-.01em}
+.lang{display:flex;flex:none;padding:3px;gap:2px;background:#f7f8f9;border:1px solid #d5d9de;border-radius:999px}
+.lang button{min-width:48px;height:32px;padding:0 10px;border:0;border-radius:999px;font:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;background:transparent;color:#5e6877}
+.lang button[aria-pressed="true"]{background:#2f3a4a;color:#fff}
+.photo{width:100px;height:100px;border-radius:50%;object-fit:cover;margin-top:18px;border:3px solid #f7f8f9;box-shadow:0 0 0 2px #a3a9b1}
+h1{margin:12px 0 0;display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;gap:4px 10px;font-weight:700;font-size:clamp(28px,8.6vw,38px);line-height:1.05;letter-spacing:-.02em;text-align:center}
+h1 .word{display:flex;flex-direction:column;align-items:center}
+.ann{margin-top:6px;font-weight:500;font-size:14px;line-height:1.2;color:#5e6877;letter-spacing:.02em}
+.ann.jp{letter-spacing:.08em}
+body[data-lang="ja"] .en-only,body:not([data-lang="ja"]) .ja-only{display:none}
+.bar{display:block;width:72px;height:4px;border-radius:2px;background:#4a7475;margin:12px 0}
+.role{margin:0;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#5e6877}
+.resume{margin-top:14px;align-self:stretch;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.resume .cos{margin:0;display:flex;flex-wrap:wrap;justify-content:center;column-gap:5px;font-size:13px;font-weight:600;color:#2f3a4a}
+.resume .cos span{white-space:nowrap}
+.resume .sum{margin:0;font-size:14px;line-height:1.4;color:#5e6877}
+.tags{margin:2px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.tags li{padding:4px 10px;border:1px solid #d5d9de;border-radius:999px;background:#f7f8f9;font-size:12px;font-weight:500;color:#2f3a4a}
+.save{margin-top:18px;align-self:stretch;height:50px;display:flex;align-items:center;justify-content:center;gap:10px;background:#4a7475;color:#fff;border:2px solid #2f3a4a;border-radius:999px;box-shadow:0 3px 0 #2f3a4a;font-weight:700;font-size:17px;text-decoration:none}
+.save:hover,.save:focus-visible{color:#fff;background:#3f6566}
+.save:active{transform:translateY(2px);box-shadow:0 1px 0 #2f3a4a}
+.links{align-self:stretch;margin-top:14px;background:#f7f8f9;border:1px solid #d5d9de;border-radius:14px;overflow:hidden}
+.links a{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 16px;color:#2f3a4a;text-decoration:none;min-width:0}
+.links a+a{border-top:1px solid #d5d9de}
+.links .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.links .label{font-weight:600;font-size:16px;flex:1}
+.links .val{font-size:14px;color:#5e6877;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qr{margin-top:auto;padding-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 16px;justify-content:center}
+.qr svg{width:112px;height:112px;background:#f7f8f9;border-radius:10px;box-shadow:0 0 0 1px #a3a9b1;flex:none}
+.qr .t{display:flex;flex-direction:column;gap:4px}
+.qr .u{font-weight:700;font-size:18px}
+.qr .h{font-size:13px;color:#5e6877;max-width:160px;line-height:1.35}
+.share{margin-top:18px;height:44px;padding:0 18px;border:1px solid #d5d9de;border-radius:999px;background:#f7f8f9;color:#2f3a4a;font:inherit;font-size:15px;font-weight:600;display:none;align-items:center;gap:8px;cursor:pointer}
+.share.on{display:inline-flex}
+@media (max-width:359px){
+  .brand span{font-size:17px}
+  .brand img{width:40px;height:32px}
+  .lang button{min-width:40px;padding:0 8px}
+  .role{letter-spacing:.1em;font-size:13px}
+  .qr .t{align-items:center;text-align:center}
+}
+@media (min-width:400px){.resume .cos{font-size:14px}}
+@media (min-width:600px){main{padding-top:40px;padding-bottom:40px}}
+</style>
+</head>
+<body data-lang="en">
+<main>
+  <div class="top">
+    <a class="brand" href="https://luckysushi.ai"><img src="lucky-sushi.png" alt="Lucky Sushi logo: Lucky the Great Dane mix and Sushi the Shih Tzu"><span class="serif">Lucky Sushi</span></a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set="en" aria-pressed="true">EN</button>
+      <button type="button" data-set="ja" aria-pressed="false">EN·JP</button>
+    </div>
+  </div>
+
+  <img class="photo" src="aaron.jpg" alt="Aaron Wroblewski" width="100" height="100">
+
+  <h1 class="serif">
+    <span class="word"><span>Aaron</span><span class="ann jp ja-only" lang="ja">アーロン</span></span>
+    <span class="word"><span>Wroblewski</span><span class="ann jp ja-only" lang="ja">ロブレスキー</span><span class="ann en-only">row-BLESS-ski</span></span>
+  </h1>
+
+  <span class="bar" aria-hidden="true"></span>
+
+  <p class="role">Founder · Lucky Sushi</p>
+
+  <div class="resume">
+    <p class="cos"><span>Ex Zillow (leader of leaders) ·</span><span>Amazon · Microsoft</span></p>
+    <p class="sum">16+ years in applied ML and AI. Agentic systems serving millions of daily queries.</p>
+    <ul class="tags" aria-label="Specialties">
+      <li>LLM evaluation</li>
+      <li>Knowledge &amp; retrieval</li>
+      <li>MCP</li>
+      <li>Experimentation platforms</li>
+    </ul>
+  </div>
+
+  <a class="save" href="aaron-wroblewski.vcf" download="Aaron Wroblewski.vcf">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg>
+    Save contact
+  </a>
+
+  <nav class="links" aria-label="Links">
+    <a href="https://www.linkedin.com/in/aaronwro"><span class="dot" style="background:#5b6e8f"></span><span class="label">LinkedIn</span><span class="val">/in/aaronwro</span></a>
+    <a href="https://luckysushi.ai"><span class="dot" style="background:#4a7475"></span><span class="label">Lucky Sushi</span><span class="val">luckysushi.ai</span></a>
+    <a href="mailto:aaron@luckysushi.ai"><span class="dot" style="background:#8e7590"></span><span class="label">Email</span><span class="val">aaron@luckysushi.ai</span></a>
+  </nav>
+
+  <div class="qr">
+    <svg viewBox="-2 -2 33 33" role="img" aria-label="QR code for luckysushi.ai/aaron"><path fill="#2f3a4a" d="M0 0h7v1h-7zM8 0h3v1h-3zM12 0h3v1h-3zM18 0h1v1h-1zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h4v1h-4zM15 1h1v1h-1zM17 1h2v1h-2zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h3v1h-3zM13 2h4v1h-4zM19 2h2v1h-2zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h2v1h-2zM14 3h4v1h-4zM19 3h1v1h-1zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM12 4h2v1h-2zM18 4h3v1h-3zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM13 5h4v1h-4zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM9 7h4v1h-4zM14 7h2v1h-2zM18 7h1v1h-1zM20 7h1v1h-1zM1 8h7v1h-7zM9 8h1v1h-1zM11 8h3v1h-3zM15 8h1v1h-1zM18 8h1v1h-1zM23 8h2v1h-2zM28 8h1v1h-1zM1 9h3v1h-3zM5 9h1v1h-1zM11 9h1v1h-1zM13 9h1v1h-1zM15 9h10v1h-10zM26 9h1v1h-1zM28 9h1v1h-1zM0 10h2v1h-2zM3 10h1v1h-1zM6 10h1v1h-1zM8 10h2v1h-2zM11 10h2v1h-2zM15 10h4v1h-4zM20 10h4v1h-4zM25 10h1v1h-1zM0 11h2v1h-2zM3 11h2v1h-2zM7 11h1v1h-1zM9 11h3v1h-3zM13 11h2v1h-2zM19 11h5v1h-5zM27 11h1v1h-1zM0 12h3v1h-3zM5 12h4v1h-4zM10 12h4v1h-4zM15 12h3v1h-3zM19 12h3v1h-3zM23 12h1v1h-1zM26 12h3v1h-3zM1 13h4v1h-4zM11 13h2v1h-2zM16 13h2v1h-2zM19 13h4v1h-4zM24 13h2v1h-2zM27 13h2v1h-2zM0 14h1v1h-1zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM8 14h5v1h-5zM14 14h2v1h-2zM17 14h1v1h-1zM21 14h1v1h-1zM23 14h1v1h-1zM1 15h1v1h-1zM7 15h2v1h-2zM10 15h1v1h-1zM13 15h1v1h-1zM16 15h3v1h-3zM20 15h1v1h-1zM24 15h2v1h-2zM27 15h1v1h-1zM4 16h3v1h-3zM8 16h1v1h-1zM10 16h2v1h-2zM14 16h3v1h-3zM19 16h1v1h-1zM25 16h4v1h-4zM0 17h1v1h-1zM4 17h2v1h-2zM7 17h2v1h-2zM13 17h1v1h-1zM15 17h1v1h-1zM17 17h6v1h-6zM24 17h5v1h-5zM0 18h1v1h-1zM2 18h1v1h-1zM6 18h1v1h-1zM8 18h1v1h-1zM10 18h3v1h-3zM14 18h3v1h-3zM18 18h1v1h-1zM22 18h3v1h-3zM26 18h1v1h-1zM0 19h1v1h-1zM3 19h1v1h-1zM5 19h1v1h-1zM9 19h1v1h-1zM11 19h1v1h-1zM15 19h1v1h-1zM19 19h1v1h-1zM22 19h1v1h-1zM25 19h1v1h-1zM28 19h1v1h-1zM0 20h1v1h-1zM4 20h5v1h-5zM10 20h1v1h-1zM13 20h5v1h-5zM20 20h5v1h-5zM26 20h3v1h-3zM8 21h2v1h-2zM11 21h1v1h-1zM16 21h1v1h-1zM20 21h1v1h-1zM24 21h2v1h-2zM27 21h2v1h-2zM0 22h7v1h-7zM8 22h2v1h-2zM11 22h2v1h-2zM14 22h3v1h-3zM18 22h3v1h-3zM22 22h1v1h-1zM24 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h4v1h-4zM15 23h2v1h-2zM19 23h2v1h-2zM24 23h2v1h-2zM28 23h1v1h-1zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h1v1h-1zM13 24h3v1h-3zM18 24h1v1h-1zM20 24h8v1h-8zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h1v1h-1zM11 25h2v1h-2zM15 25h2v1h-2zM19 25h3v1h-3zM23 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM8 26h2v1h-2zM11 26h1v1h-1zM13 26h2v1h-2zM17 26h9v1h-9zM27 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h5v1h-5zM14 27h1v1h-1zM16 27h1v1h-1zM19 27h3v1h-3zM24 27h2v1h-2zM27 27h1v1h-1zM0 28h7v1h-7zM12 28h3v1h-3zM16 28h2v1h-2zM19 28h1v1h-1zM24 28h1v1h-1zM26 28h1v1h-1z"></path></svg>
+    <div class="t">
+      <span class="u serif">luckysushi.ai/aaron</span>
+      <span class="h">Scan to keep my details, or tap my card to your phone.</span>
+    </div>
+  </div>
+
+  <button class="share" type="button" id="share">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M7 8l5-5 5 5"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"></path></svg>
+    Share this card
+  </button>
+</main>
+<script>
+(function(){
+  var b=document.body,btns=document.querySelectorAll('.lang button');
+  function set(l){b.setAttribute('data-lang',l);
+    for(var i=0;i<btns.length;i++){btns[i].setAttribute('aria-pressed',btns[i].getAttribute('data-set')===l?'true':'false');}
+    try{localStorage.setItem('card-lang',l);}catch(e){}}
+  var q=new URLSearchParams(location.search).get('lang'),s=null;
+  try{s=localStorage.getItem('card-lang');}catch(e){}
+  var nav=(navigator.languages&&navigator.languages[0])||navigator.language||'';
+  set(q==='ja'||q==='en'?q:(s||(/^ja\b/i.test(nav)?'ja':'en')));
+  for(var i=0;i<btns.length;i++){btns[i].addEventListener('click',function(){set(this.getAttribute('data-set'));});}
+  var sh=document.getElementById('share');
+  if(navigator.share){sh.classList.add('on');sh.addEventListener('click',function(){
+    navigator.share({title:'Aaron Wroblewski',text:'Aaron Wroblewski, Lucky Sushi',url:'https://luckysushi.ai/aaron'}).catch(function(){});});}
+})();
+</script>
+</body>
+</html>
